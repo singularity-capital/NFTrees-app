@@ -1,0 +1,16 @@
+{
+	"description":"The first NFT-backed carbon capture platform. Bringing verifiable carbon credits to the cryptocurrency space. Plant trees and offset your emissions with carbon-negative NFTs.",
+	"image": "https://gateway.pinata.cloud/ipfs/QmWuj95bN6JZQVY1i5xCsJmZQmEyCeJWqPDNtXSKcyLe4y",
+	"name": "NFTree",
+	"attributes": [
+		{
+			"trait_type": "Carbon offset",
+			"value": "1 tonne"
+		},
+		{
+			"trait_type": "Trees planted",
+			"value": "1 tree"
+		}
+	]
+
+}
