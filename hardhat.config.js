@@ -3,12 +3,6 @@ require("@nomiclabs/hardhat-etherscan");
 require('dotenv').config()
 require("./tasks/tasks");
 
-const INFURA_API_KEY = "782109c6748c48d6b91c3eafa72b5292";
-
-const METAMASK_PRIVATE_KEY = "4e5b143543443e896867ae6257d15f5276f7af00a34a0e5a5cd721c6aef02d5b";
-
-const ETHERSCAN_API_KEY = "NDKJ13HJPXBGN9AD9DQKJH25W1FDC86IDR";
-
 /**
  * @type import('hardhat/config').HardhatUserConfig
  */

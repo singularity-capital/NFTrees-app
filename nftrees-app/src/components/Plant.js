@@ -13,15 +13,23 @@ function Plant() {
     const[isApproved, setIsApproved] = useState(false);
 
     useEffect(() => {
-        
+        checkApproval();
     },[]);
 
     function displayButton(){
-        return(
-            <button className = 'plantButton'>
-                <p> APPROVE </p> 
-            </button>
-        )
+        if(isApproved === false){
+            return(
+                <button className = 'plantButton'>
+                    <p> APPROVE </p> 
+                </button>
+            )
+        } else {
+            return(
+                <button className = 'plantButton'>
+                    <p> PLANT </p> 
+                </button>
+            )
+        }
     }
 
     function displayNFTree(){
@@ -46,11 +54,8 @@ function Plant() {
         else if (level === 3){
             return('100 tonnes CO2 offset + 100 trees planted');
         }
-        else if (level === 4){
-            return('1000 tonnes CO2 offset + 1000 trees planted');
-        }
         else{
-            return('10000 tonnes CO2 offset + 100000 trees planted');
+            return('1000 tonnes CO2 offset + 1000 trees planted');
         }
     }
 
@@ -61,7 +66,7 @@ function Plant() {
     }
 
     function incLevel() {
-        if(level < 5){
+        if(level < 4){
             setLevel(level + 1);
             setTotalCost(totalCost * 10);
             checkApproval();
