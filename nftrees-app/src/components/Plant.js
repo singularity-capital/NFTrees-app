@@ -15,18 +15,18 @@ function Plant(props) {
     useEffect(() => {
         console.log('plant');
         checkApproval();
-    },[]);
+    },[totalCost]);
 
     function displayButton(){
         if(isApproved === false){
             return(
-                <button className = 'plantButton'>
+                <button className = 'plantButton' onClick = {approve}>
                     <p> APPROVE </p> 
                 </button>
             )
         } else {
             return(
-                <button className = 'plantButton'>
+                <button className = 'plantButton' onClick = {buyNFTree}>
                     <p> PLANT </p> 
                 </button>
             )
@@ -70,7 +70,7 @@ function Plant(props) {
         if(level < 4){
             setLevel(level + 1);
             setTotalCost(totalCost * 10);
-            checkApproval();
+            //checkApproval();
         }
     }
 
@@ -78,19 +78,29 @@ function Plant(props) {
         if(level > 1){
             setLevel(level - 1);
             setTotalCost(totalCost / 10);
-            checkApproval();
+            //checkApproval();
         }
     }
 
     const checkApproval = async () => {
         let allowance = await props.getAllowance();
-        console.log(allowance);
-        if(allowance < totalCost){
+        console.log('allowance =', allowance);
+        console.log('totalCost =', totalCost * (10**18));
+        if(allowance < totalCost * (10**18)){
             setIsApproved(false);
         }
         else{
             setIsApproved(true);
         }
+    }
+
+    const approve = async () => {
+        props.approve(totalCost);
+    }
+
+    const buyNFTree = async () => {
+        let numCredits = totalCost / 10;
+        props.buyNFTree(numCredits, totalCost, coin);
     }
 
   return (

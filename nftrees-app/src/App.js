@@ -131,13 +131,26 @@ function App() {
     return allowance;
   }
 
+  const approve = async (totalCost) => {
+    let amount = String(totalCost * (10**18));
+    await MycoinContract.methods.approve(contractAddresses['Purchase'], amount).send({from: Currentaccount});
+  }
+
+  const buyNFTree = async (numCredits, totalCost, coin) => {   
+    let amount = String(totalCost * (10**18)); 
+    console.log('numCredits =', numCredits);
+    console.log('totalCost =', amount);
+    console.log('coin =', coin);
+    await PurchaseContract.methods.buyNFTree(numCredits, amount, coin).send({from: Currentaccount});
+  }
+
   return (
     <div className="App">
       <Router>
         <Switch>
           <Route exact path = '/'>
             <Navbar account = {Currentaccount} connectWallet = {connectWallet}/>
-            <Plant getAllowance = {getAllowance}/>
+            <Plant getAllowance = {getAllowance} approve = {approve} buyNFTree = {buyNFTree}/>
           </Route>
 
           <Route exact path = '/impact'>
