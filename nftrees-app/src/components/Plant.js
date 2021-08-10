@@ -5,7 +5,7 @@ import card from '../assets/card.png';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 
-function Plant() {
+function Plant(props) {
     const[level, setLevel] = useState(1);
     const[coin, setCoin] = useState('USDT');
     const[totalCost, setTotalCost] = useState(10);
@@ -13,6 +13,7 @@ function Plant() {
     const[isApproved, setIsApproved] = useState(false);
 
     useEffect(() => {
+        console.log('plant');
         checkApproval();
     },[]);
 
@@ -81,8 +82,15 @@ function Plant() {
         }
     }
 
-    function checkApproval() {
-
+    const checkApproval = async () => {
+        let allowance = await props.getAllowance();
+        console.log(allowance);
+        if(allowance < totalCost){
+            setIsApproved(false);
+        }
+        else{
+            setIsApproved(true);
+        }
     }
 
   return (

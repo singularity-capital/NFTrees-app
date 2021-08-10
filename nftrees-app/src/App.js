@@ -38,6 +38,7 @@ function App() {
   }
 
   useEffect(() => {
+    console.log('app')
     const load = async () => {
       await loadWeb3();
     };
@@ -115,22 +116,28 @@ function App() {
     // get smart contracts
     const nftreeAddress = contractAddresses['NFTree'];
     const purchaseAddress = contractAddresses['Purchase'];
-    const mycoinAddress = contractAddresses['Mycoin'];
+    const MycoinAddress = contractAddresses['Mycoin'];
 
     if(window.ethereum){ // update with contract addresses once deployed
       setNFTreeContract(await new window.web3.eth.Contract(NFTreeABI.abi, nftreeAddress));
       setPurchaseContract(await new window.web3.eth.Contract(PurchaseABI.abi, purchaseAddress));
-      setMycoinContract(await new window.web3.eth.Contract(MycoinABI.abi, mycoinAddress));
+      setMycoinContract(await new window.web3.eth.Contract(MycoinABI.abi, MycoinAddress));
     }
   }
-  
+
+  const getAllowance = async () => {    
+    let allowance = await MycoinContract.methods.allowance(Currentaccount, contractAddresses['Purchase']).call();
+    console.log(allowance);
+    return allowance;
+  }
+
   return (
     <div className="App">
       <Router>
         <Switch>
           <Route exact path = '/'>
             <Navbar account = {Currentaccount} connectWallet = {connectWallet}/>
-            <Plant/>
+            <Plant getAllowance = {getAllowance}/>
           </Route>
 
           <Route exact path = '/impact'>
