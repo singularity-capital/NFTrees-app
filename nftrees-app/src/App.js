@@ -125,15 +125,25 @@ function App() {
     }
   }
 
-  const getAllowance = async () => {    
-    let allowance = await MycoinContract.methods.allowance(Currentaccount, contractAddresses['Purchase']).call();
-    console.log(allowance);
-    return allowance;
+  const getAllowance = async () => { 
+    if(isConnected){   
+      let allowance = await MycoinContract.methods.allowance(Currentaccount, contractAddresses['Purchase']).call();
+      console.log(allowance);
+      return allowance;
+    }
+    else{
+      return 0;
+    }
   }
 
   const approve = async (totalCost) => {
     let amount = String(totalCost * (10**18));
-    await MycoinContract.methods.approve(contractAddresses['Purchase'], amount).send({from: Currentaccount});
+    if(isConnected){
+      await MycoinContract.methods.approve(contractAddresses['Purchase'], amount).send({from: Currentaccount});
+    }
+    else {
+      alert('connect metamask wallet');
+    }
   }
 
   const buyNFTree = async (numCredits, totalCost, coin) => {   
@@ -141,7 +151,12 @@ function App() {
     console.log('numCredits =', numCredits);
     console.log('totalCost =', amount);
     console.log('coin =', coin);
-    await PurchaseContract.methods.buyNFTree(numCredits, amount, coin).send({from: Currentaccount});
+    if(isConnected){
+      await PurchaseContract.methods.buyNFTree(numCredits, amount, coin).send({from: Currentaccount});
+    }
+    else {
+      alert('connect metamask wallet');
+    }
   }
 
   return (
