@@ -1,0 +1,13 @@
+.impactContainer {
+    height: calc(100vh - 75px);
+    background-color: #F7F8FA;
+    padding-top: 100px;
+}
+
+.dashboard {
+    width: 600px;
+    height: 600px;
+    margin: auto;
+    background-color: blue;
+    border-radius: 20px;
+}

@@ -19,7 +19,6 @@ import MycoinABI from './artifacts/contracts/Mycoin.sol/Mycoin.json';
 import Navbar from './components/Navbar';
 import Plant from './components/Plant';
 import Impact from './components/Impact';
-import Wallet from './components/Wallet';
 
 function App() {
   const[Currentaccount, setCurrentaccount] = useState();
@@ -128,7 +127,6 @@ function App() {
   const getAllowance = async () => { 
     if(isConnected){   
       let allowance = await MycoinContract.methods.allowance(Currentaccount, contractAddresses['Purchase']).call();
-      console.log(allowance);
       return allowance;
     }
     else{
@@ -148,9 +146,6 @@ function App() {
 
   const buyNFTree = async (numCredits, totalCost, coin) => {   
     let amount = String(totalCost * (10**18)); 
-    console.log('numCredits =', numCredits);
-    console.log('totalCost =', amount);
-    console.log('coin =', coin);
     if(isConnected){
       await PurchaseContract.methods.buyNFTree(numCredits, amount, coin).send({from: Currentaccount});
     }
@@ -170,10 +165,7 @@ function App() {
 
           <Route exact path = '/impact'>
             <Navbar account = {Currentaccount} connectWallet = {connectWallet}/>
-          </Route>
-
-          <Route exact path = '/wallet'>
-            <Navbar account = {Currentaccount} connectWallet = {connectWallet}/>
+            <Impact/>
           </Route>
         </Switch>
       </Router>

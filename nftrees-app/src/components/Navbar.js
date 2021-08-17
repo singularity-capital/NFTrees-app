@@ -36,8 +36,6 @@ function Navbar (props){
             <p className = 'spacer'/>
             <NavLink exact smooth activeClassName = "active-navbar-Link" className = "navbar-Link" to = '/impact'> My impact </NavLink>
             <p className = 'spacer'/>
-            <NavLink exact smooth activeClassName = "active-navbar-Link" className = "navbar-Link" to = '/wallet'> My wallet </NavLink>
-            <p className = 'spacer'/>
 
             {/* display user address */}
             <p className = "address my-auto"> <SubstringAddress/> </p>

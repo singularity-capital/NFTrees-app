@@ -1,14 +1,29 @@
 // base imports
 import React from 'react';
-import './Plant.css';
+import './Impact.css';
 
-function Plant() {
+function Impact() {
   
   return (
-    <div className="Plant">
-      
+    <div className="Impact">
+      <div className = 'impactContainer'>
+        <div className = 'dashboard'>
+          <div className = 'dashboardHeader'>
+
+          </div>
+          <div className = 'dashboardEmissions'>
+
+          </div>
+          <div className = 'dashboardImpact'>
+
+          </div>
+          <div className = 'dashboardSummary'>
+            
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
 
-export default Plant;
+export default Impact;
