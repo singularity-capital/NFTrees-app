@@ -4,6 +4,7 @@ import './Plant.css';
 import card from '../assets/card.png';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
+import bigInt from "big-integer";
 
 function Plant(props) {
     const[level, setLevel] = useState(1);
@@ -13,7 +14,6 @@ function Plant(props) {
     const[isApproved, setIsApproved] = useState(false);
 
     useEffect(() => {
-        console.log('plant');
         checkApproval();
     },[totalCost]);
 
@@ -85,7 +85,7 @@ function Plant(props) {
     const checkApproval = async () => {
         let allowance = await props.getAllowance();
         console.log('allowance =', allowance);
-        console.log('totalCost =', totalCost * (10**18));
+        console.log('totalCost =', bigInt(totalCost * (10**18)));
         if(allowance < totalCost * (10**18)){
             setIsApproved(false);
         }

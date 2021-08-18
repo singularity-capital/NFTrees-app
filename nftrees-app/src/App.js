@@ -9,6 +9,7 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
+import bigInt from "big-integer";
 
 // import contract abis
 import NFTreeABI from './artifacts/contracts/NFTree.sol/NFTree.json';
@@ -135,7 +136,7 @@ function App() {
   }
 
   const approve = async (totalCost) => {
-    let amount = String(totalCost * (10**18));
+    let amount = String(bigInt(totalCost * (10**18)));
     if(isConnected){
       await MycoinContract.methods.approve(contractAddresses['Purchase'], amount).send({from: Currentaccount});
     }
@@ -145,7 +146,7 @@ function App() {
   }
 
   const buyNFTree = async (numCredits, totalCost, coin) => {   
-    let amount = String(totalCost * (10**18)); 
+    let amount = String(bigInt(totalCost * (10**18))); 
     if(isConnected){
       await PurchaseContract.methods.buyNFTree(numCredits, amount, coin).send({from: Currentaccount});
     }
