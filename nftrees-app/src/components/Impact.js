@@ -2,8 +2,11 @@
 import React, { PureComponent , useState, useEffect} from 'react';
 import './Impact.css';
 import { calculateAddressEmissions } from "ethereum-emissions-calculator";
+import CountUp from 'react-countup';
 
-function Impact() {
+require('dotenv').config()
+
+function Impact(props) {
   const[totalGas, setTotalGas] = useState(0);
     const[totalKg, setTotalKg] = useState(0);
     const[totalTransactions, setTotalTransactions] = useState(0);
@@ -12,6 +15,10 @@ function Impact() {
     var loading;
 
     useEffect(() => {
+        const calculate = async () => {
+          await handleCalculateEmissions();
+          console.log(totalTransactions);
+        }
         loading = document.querySelector('#loading');
     }, [calculating, validInput]);
 
@@ -22,13 +29,14 @@ function Impact() {
         setTotalTransactions(undefined);
         setValidInput(undefined);
 
-        loading.style.display = 'flex';
+        //loading.style.display = 'flex';
         var gas = 0;
         var co2 = 0;
         var transactions = 0;
         var typeTransaction = ['eth', 'erc20', 'erc721'];
 
-        const address = document.getElementById('input').value;
+        const address = props.address
+        console.log(address);
         const apiKey = process.env.REACT_APP_ETHERSCAN_API_KEY;
         if((address.length === 42) & (address.slice(0, 2) === '0x')){
             for (var i = 0; i < 3; i++) {
@@ -50,7 +58,7 @@ function Impact() {
         } else {
             setValidInput(false);
         }
-        loading.style.display = 'none';
+        //loading.style.display = 'none';
         setCalculating(false);
     }
   
@@ -67,6 +75,7 @@ function Impact() {
           <div className = 'dashboardContent'>
             <div className = 'dashboardLeft'>
               <p className = 'contentHeader'>Transactions</p>
+              <CountUp end = {totalTransactions} duration = {1} separator ={','}/>
               <p></p>
             </div>
             <div className = 'dashboardMiddle'>
