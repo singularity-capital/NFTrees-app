@@ -45,6 +45,7 @@
     margin-left: 12px;
     margin-bottom: 4px;
     text-align: left;
+    font-size: 16px;
 }
 
 .emissionsValue {
@@ -57,6 +58,7 @@
     margin-left: 12px;
     margin-bottom: 4px;
     text-align: left;
+    font-size: 16px;
 }
 
 .impactValue {
@@ -94,10 +96,10 @@
 }
 
 .contentHeader{
-    font-size: 14px;
+    font-size: 15px;
     color: #6d6b6b;
-    margin: 0px;
-    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-bottom: 12px;
 } 
 
 
