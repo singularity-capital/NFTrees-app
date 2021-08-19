@@ -1,10 +1,8 @@
 // base imports
-import React, { PureComponent , useState, useEffect} from 'react';
+import React, { PureComponent , useState, useEffect, useImperativeHandle} from 'react';
 import './Impact.css';
 import { calculateAddressEmissions } from "ethereum-emissions-calculator";
 import CountUp from 'react-countup';
-
-require('dotenv').config()
 
 function Impact(props) {
   const[totalGas, setTotalGas] = useState(0);
@@ -15,19 +13,21 @@ function Impact(props) {
     var loading;
 
     useEffect(() => {
-        const calculate = async () => {
+        /*const calculate = async () => {
           await handleCalculateEmissions();
           console.log(totalTransactions);
         }
-        loading = document.querySelector('#loading');
+        calculate();
+        loading = document.querySelector('#loading');*/
+        handleCalculateEmissions();
     }, [calculating, validInput]);
+
 
     const handleCalculateEmissions = async () => {
         setCalculating(true);
         setTotalGas(undefined);
         setTotalKg(undefined);
         setTotalTransactions(undefined);
-        setValidInput(undefined);
 
         //loading.style.display = 'flex';
         var gas = 0;
@@ -35,29 +35,27 @@ function Impact(props) {
         var transactions = 0;
         var typeTransaction = ['eth', 'erc20', 'erc721'];
 
-        const address = props.address
+        //const address = props.account;
+        const address = '0xBB379331De54A7c0a4b2bfF5A54A14cdba7E9E6d';
         console.log(address);
-        const apiKey = process.env.REACT_APP_ETHERSCAN_API_KEY;
-        if((address.length === 42) & (address.slice(0, 2) === '0x')){
-            for (var i = 0; i < 3; i++) {
-                const emissions = await calculateAddressEmissions({
-                    transactionType: typeTransaction[i],
-                    address,
-                    etherscanAPIKey: apiKey,
-                });
-                
-                gas += emissions['gasUsed'];
-                co2 += emissions['kgCO2'];
-                transactions += emissions['transactionsCount'];
-            }
+        //const apiKey = process.env.REACT_APP_ETHERSCAN_API_KEY;
+        const apiKey = 'NDKJ13HJPXBGN9AD9DQKJH25W1FDC86IDR';
+        for (var i = 0; i < 3; i++) {
+            const emissions = await calculateAddressEmissions({
+                transactionType: typeTransaction[i],
+                address: address,
+                etherscanAPIKey: apiKey,
+            });
             
-            setTotalGas(gas);
-            setTotalKg(co2);
-            setTotalTransactions(transactions);
-            setValidInput(true);
-        } else {
-            setValidInput(false);
+            gas += emissions['gasUsed'];
+            co2 += emissions['kgCO2'];
+            transactions += emissions['transactionsCount'];
         }
+        
+        setTotalGas(gas);
+        setTotalKg(co2);
+        setTotalTransactions(transactions);
+        
         //loading.style.display = 'none';
         setCalculating(false);
     }
@@ -75,31 +73,30 @@ function Impact(props) {
           <div className = 'dashboardContent'>
             <div className = 'dashboardLeft'>
               <p className = 'contentHeader'>Transactions</p>
-              <CountUp end = {totalTransactions} duration = {1} separator ={','}/>
-              <p></p>
+              <CountUp className = 'emissionsValue' end = {totalTransactions} duration = {1} separator ={','}/>
             </div>
             <div className = 'dashboardMiddle'>
               <p className = 'contentHeader'>Gas spent</p>
-
+              <CountUp className = 'emissionsValue' end = {totalTransactions} duration = {1} separator ={','}/>
             </div>
             <div className = 'dashboardRight'>
               <p className = 'contentHeader'>CO2 produced</p>
-
+              <CountUp className = 'emissionsValue' end = {totalTransactions} duration = {1} separator ={','}/>
             </div>
           </div>
           <p className = 'impactTitle'>IMPACT</p>
           <div className = 'dashboardContent'>
             <div className = 'dashboardLeft'>
               <p className = 'contentHeader'>NFTrees</p>
-
+              <CountUp className = 'impactValue' end = {totalTransactions} duration = {1} separator ={','}/>
             </div>
             <div className = 'dashboardMiddle'>
               <p className = 'contentHeader'>CO2 offset</p>
-
+              <CountUp className = 'impactValue' end = {totalTransactions} duration = {1} separator ={','}/>
             </div>
             <div className = 'dashboardRight'>
               <p className = 'contentHeader'>Trees planted</p>
-
+              <CountUp className = 'impactValue' end = {totalTransactions} duration = {1} separator ={','}/>
             </div>
           </div>
           <div className = 'dashboardSummary'>

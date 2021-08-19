@@ -47,12 +47,21 @@
     text-align: left;
 }
 
+.emissionsValue {
+    font-size: 20px;
+}
+
 .impactTitle {
     margin: 0px;
     margin-top: 20px;
     margin-left: 12px;
     margin-bottom: 4px;
     text-align: left;
+}
+
+.impactValue {
+    font-size: 20px;
+    color: #74CA86;
 }
 
 .dashboardContent {
@@ -88,6 +97,7 @@
     font-size: 14px;
     color: #6d6b6b;
     margin: 0px;
+    margin-bottom: 10px;
 } 
 
 

@@ -166,7 +166,7 @@ function App() {
 
           <Route exact path = '/impact'>
             <Navbar account = {Currentaccount} connectWallet = {connectWallet}/>
-            <Impact address = {Currentaccount}/>
+            <Impact account = {Currentaccount}/>
           </Route>
         </Switch>
       </Router>
