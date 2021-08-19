@@ -155,8 +155,34 @@ function App() {
     }
   }
 
+  const calculateImpact = async () => {    
+    if(isConnected){
+      let totalOffset = 0;
+      let totalTrees = 0
+      let tokens = await NFTreeContract.methods.tokensOfOwner(Currentaccount).call();
+      if (tokens.length != 0){
+        for (var i = 0; i < tokens.length; i ++) {
+          let uri = await NFTreeContract.methods.tokenURI(tokens[i]).call();
+          let obj = await (await fetch(uri)).json();
+          let offset = parseInt(obj['attributes'][0].value, 10);
+          let trees = parseInt(obj['attributes'][1].value, 10);
+          totalOffset += offset;
+          totalTrees += trees;
+        }
+      }
+
+      console.log("total NFTrees =", tokens.length)
+      console.log("total offset =", totalOffset);
+      console.log("total number of trees planted = ", totalTrees)
+    }
+    else {
+      alert('connect metamask wallet');
+    }
+  }
+
   return (
     <div className="App">
+      <button onClick = {calculateImpact}> claculate</button>
       <Router>
         <Switch>
           <Route exact path = '/'>
