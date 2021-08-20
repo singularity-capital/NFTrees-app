@@ -2,9 +2,11 @@
 import React, {useEffect, useState} from 'react';
 import './Plant.css';
 import card from '../assets/card.png';
-import Dropdown from 'react-dropdown';
-import 'react-dropdown/style.css';
 import bigInt from "big-integer";
+import Dropdown from 'react-dropdown';
+import dai from '../assets/dai_logo.png';
+import usdc from '../assets/usdc_logo.png';
+import usdt from '../assets/usdt_logo.png';
 
 function Plant(props) {
     const[level, setLevel] = useState(1);
@@ -103,6 +105,13 @@ function Plant(props) {
         props.buyNFTree(numCredits, totalCost, coin);
     }
 
+    const options = [
+        { value: 'dai', label: <div className = 'currencyOption'><div className = 'currencyLogo'><img src={dai} height="20px" width="20px"/></div><p className = 'currencyText'>DAI</p></div> },
+        { value: 'usdc', label: <div className = 'currencyOption'><div className = 'currencyLogo'><img src={usdc} height="20px" width="20px"/></div><p className = 'currencyText'>USDC</p></div> },
+        { value: 'usdt', label: <div className = 'currencyOption'><div className = 'currencyLogo'><img src={usdt} height="20px" width="20px"/></div><p className = 'currencyText'>USDT</p></div> },
+    ];
+    const defaultOption = options[0];
+
   return (
     <div className = "Plant">
         <div className = 'plantContainer'>
@@ -127,7 +136,7 @@ function Plant(props) {
 
                     <div className = 'currencySelector'>
                         <div className = 'currency'> 
-
+                            <Dropdown className = 'currencyDropdown' options={options} /*onChange={this._onSelect}*/ value={defaultOption} placeholder="Select currency" />
                         </div>
 
                         <div className = 'total'> 
