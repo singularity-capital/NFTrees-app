@@ -7,6 +7,7 @@ import Dropdown from 'react-dropdown';
 import dai from '../assets/dai_logo.png';
 import usdc from '../assets/usdc_logo.png';
 import usdt from '../assets/usdt_logo.png';
+import firebase from '../firebase';
 
 function Plant(props) {
     const[level, setLevel] = useState(1);
@@ -19,8 +20,21 @@ function Plant(props) {
         checkApproval();
     },[totalCost]);
 
-    function displayButton(){
-        if(isApproved === false){
+    function insertDB() {
+        var database = firebase.database().ref('transactions');
+        database.push().set({
+            date: '0xBB379331De54A7c0a4b2bfF5A54A14cdba7E9E6d',
+            wallet: '0xBB379331De54A7c0a4b2bfF5A54A14cdba7E9E6d',
+            amount: '100',
+            currency: 'DAI',
+            carbon_credits: '10',
+            trees_planted: '10'
+        });
+        console.log("DB INSERT");
+    }
+
+    function displayButton() {
+        if(isApproved === false) {
             return(
                 <button className = 'plantButton' onClick = {approve}>
                     <p> APPROVE </p> 
@@ -35,13 +49,13 @@ function Plant(props) {
         }
     }
 
-    function displayNFTree(){
+    function displayNFTree() {
         return(
             <img src = {card} height = {560} width = {400}/>
         )
     }
 
-    function displayLevel(){
+    function displayLevel() {
         return(
             'NFTree level ' + String(level)
         )
@@ -101,6 +115,7 @@ function Plant(props) {
     }
 
     const buyNFTree = async () => {
+        
         let numCredits = totalCost / 10;
         props.buyNFTree(numCredits, totalCost, coin);
     }
@@ -114,6 +129,9 @@ function Plant(props) {
 
   return (
     <div className = "Plant">
+        <button className = 'plantButton' onClick = {insertDB}>
+            <p> Insert DB </p> 
+        </button>
         <div className = 'plantContainer'>
             <div className = 'plantGrid'>
                 <div className = 'plantLeft'>
