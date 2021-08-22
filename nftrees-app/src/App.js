@@ -1,6 +1,7 @@
 // base imports
 import React ,{useEffect, useState} from 'react';
 import './App.css';
+import firebase from './firebase';
 
 // import packages
 import Web3 from 'web3';
@@ -145,10 +146,26 @@ function App() {
     }
   }
 
-  const buyNFTree = async (numCredits, totalCost, coin) => {   
+  const buyNFTree = async (numCredits, totalCost, currency) => {   
     let amount = String(bigInt(totalCost * (10**18))); 
     if(isConnected){
-      await PurchaseContract.methods.buyNFTree(numCredits, amount, coin).send({from: Currentaccount});
+      var today = new Date();
+      var dd = String(today.getDate()).padStart(2, '0');
+      var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0
+      var yyyy = today.getFullYear();
+      today = mm + '/' + dd + '/' + yyyy;
+
+      var database = firebase.database().ref('transactions');
+      database.push().set({
+          date: today,
+          wallet: Currentaccount,
+          amount: totalCost,
+          currency: currency,
+          carbon_credits: numCredits,
+          trees_planted: numCredits
+      });
+      console.log("DB INSERT");
+      await PurchaseContract.methods.buyNFTree(numCredits, amount, currency).send({from: Currentaccount});
     }
     else {
       alert('connect metamask wallet');
@@ -182,7 +199,6 @@ function App() {
 
   return (
     <div className="App">
-      <button onClick = {calculateImpact}> claculate</button>
       <Router>
         <Switch>
           <Route exact path = '/'>

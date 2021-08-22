@@ -7,11 +7,10 @@ import Dropdown from 'react-dropdown';
 import dai from '../assets/dai_logo.png';
 import usdc from '../assets/usdc_logo.png';
 import usdt from '../assets/usdt_logo.png';
-import firebase from '../firebase';
 
 function Plant(props) {
     const[level, setLevel] = useState(1);
-    const[coin, setCoin] = useState('USDT');
+    const[currency, setCurrency] = useState('USDT');
     const[totalCost, setTotalCost] = useState(10);
     const[coinMenuOpen, setCoinMenuOpen] = useState(false);
     const[isApproved, setIsApproved] = useState(false);
@@ -19,19 +18,6 @@ function Plant(props) {
     useEffect(() => {
         checkApproval();
     },[totalCost]);
-
-    function insertDB() {
-        var database = firebase.database().ref('transactions');
-        database.push().set({
-            date: '0xBB379331De54A7c0a4b2bfF5A54A14cdba7E9E6d',
-            wallet: '0xBB379331De54A7c0a4b2bfF5A54A14cdba7E9E6d',
-            amount: '100',
-            currency: 'DAI',
-            carbon_credits: '10',
-            trees_planted: '10'
-        });
-        console.log("DB INSERT");
-    }
 
     function displayButton() {
         if(isApproved === false) {
@@ -78,7 +64,7 @@ function Plant(props) {
 
     function displayTotal() {
         return(
-            '$' + String(totalCost) + ' ' + coin
+            '$' + String(totalCost) + ' ' + currency
         )
     }
 
@@ -115,23 +101,24 @@ function Plant(props) {
     }
 
     const buyNFTree = async () => {
-        
         let numCredits = totalCost / 10;
-        props.buyNFTree(numCredits, totalCost, coin);
+        props.buyNFTree(numCredits, totalCost, currency);
     }
 
     const options = [
-        { value: 'dai', label: <div className = 'currencyOption'><div className = 'currencyLogo'><img src={dai} height="20px" width="20px"/></div><p className = 'currencyText'>DAI</p></div> },
-        { value: 'usdc', label: <div className = 'currencyOption'><div className = 'currencyLogo'><img src={usdc} height="20px" width="20px"/></div><p className = 'currencyText'>USDC</p></div> },
-        { value: 'usdt', label: <div className = 'currencyOption'><div className = 'currencyLogo'><img src={usdt} height="20px" width="20px"/></div><p className = 'currencyText'>USDT</p></div> },
+        { value: 'DAI', label: <div className = 'currencyOption'><div className = 'currencyLogo'><img src={dai} height="20px" width="20px"/></div><p className = 'currencyText'>DAI</p></div> },
+        { value: 'USDC', label: <div className = 'currencyOption'><div className = 'currencyLogo'><img src={usdc} height="20px" width="20px"/></div><p className = 'currencyText'>USDC</p></div> },
+        { value: 'USDT', label: <div className = 'currencyOption'><div className = 'currencyLogo'><img src={usdt} height="20px" width="20px"/></div><p className = 'currencyText'>USDT</p></div> },
     ];
     const defaultOption = options[0];
 
+    function changeCurrency(e) {
+        setCurrency(e.target.value);
+        console.log(e.target.value);
+    }
+
   return (
     <div className = "Plant">
-        <button className = 'plantButton' onClick = {insertDB}>
-            <p> Insert DB </p> 
-        </button>
         <div className = 'plantContainer'>
             <div className = 'plantGrid'>
                 <div className = 'plantLeft'>
@@ -154,7 +141,7 @@ function Plant(props) {
 
                     <div className = 'currencySelector'>
                         <div className = 'currency'> 
-                            <Dropdown className = 'currencyDropdown' options={options} /*onChange={this._onSelect}*/ value={defaultOption} placeholder="Select currency" />
+                            <Dropdown className = 'currencyDropdown' options={options} /*onChange={}*/ value={defaultOption} placeholder="Select currency" />
                         </div>
 
                         <div className = 'total'> 
