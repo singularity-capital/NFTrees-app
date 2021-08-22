@@ -10,12 +10,13 @@ import usdt from '../assets/usdt_logo.png';
 
 function Plant(props) {
     const[level, setLevel] = useState(1);
-    const[currency, setCurrency] = useState('USDT');
+    const[currency, setCurrency] = useState(0);
     const[totalCost, setTotalCost] = useState(10);
     const[coinMenuOpen, setCoinMenuOpen] = useState(false);
     const[isApproved, setIsApproved] = useState(false);
 
     useEffect(() => {
+        const defaultOption = options[0];
         checkApproval();
     },[totalCost]);
 
@@ -63,8 +64,18 @@ function Plant(props) {
     }
 
     function displayTotal() {
+        var coin;
+        if (currency === 0){
+            coin = 'DAI';
+        }
+        else if (currency === 1) {
+            coin = 'USDC';
+        }
+        else if (currency === 2) {
+            coin = 'USDT';
+        }
         return(
-            '$' + String(totalCost) + ' ' + currency
+            '$' + String(totalCost) + ' ' + coin
         )
     }
 
@@ -110,11 +121,20 @@ function Plant(props) {
         { value: 'USDC', label: <div className = 'currencyOption'><div className = 'currencyLogo'><img src={usdc} height="20px" width="20px"/></div><p className = 'currencyText'>USDC</p></div> },
         { value: 'USDT', label: <div className = 'currencyOption'><div className = 'currencyLogo'><img src={usdt} height="20px" width="20px"/></div><p className = 'currencyText'>USDT</p></div> },
     ];
-    const defaultOption = options[0];
+    // const defaultOption = options[0];
 
-    function changeCurrency(e) {
-        setCurrency(e.target.value);
-        console.log(e.target.value);
+    function changeCurrency(props) {
+        var currency = props.value;
+        if (currency === 'DAI'){
+            setCurrency(0);
+        }
+        else if (currency === 'USDC') {
+            setCurrency(1);
+        }
+        else if (currency === 'USDT') {
+            setCurrency(2);
+        }
+        console.log(currency);
     }
 
   return (
@@ -141,7 +161,7 @@ function Plant(props) {
 
                     <div className = 'currencySelector'>
                         <div className = 'currency'> 
-                            <Dropdown className = 'currencyDropdown' options={options} /*onChange={}*/ value={defaultOption} placeholder="Select currency" />
+                            <Dropdown className = 'currencyDropdown' options={options} onChange={changeCurrency} value={options[currency]} placeholder="Select currency"/>
                         </div>
 
                         <div className = 'total'> 
