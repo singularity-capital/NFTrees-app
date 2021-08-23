@@ -8,12 +8,15 @@ import dai from '../assets/dai_logo.png';
 import usdc from '../assets/usdc_logo.png';
 import usdt from '../assets/usdt_logo.png';
 
+import Web3 from 'web3';
+
 function Plant(props) {
     const[level, setLevel] = useState(1);
     const[coinIndex, setcoinIndex] = useState(0);
     const[totalCost, setTotalCost] = useState(10);
     const[coinMenuOpen, setCoinMenuOpen] = useState(false);
     const[isApproved, setIsApproved] = useState(false);
+    const[test, setTest] = useState();
 
     const coins = [
         'DAI',
@@ -24,7 +27,21 @@ function Plant(props) {
     useEffect(() => {
         const defaultOption = options[0];
         checkApproval();
-    },[totalCost]);
+        addEventListeners();
+        
+        return () => {
+            console.log('cleaned up plant');
+        };
+    },[totalCost, test]);
+
+    const addEventListeners = async () => {
+        props.DAIContract.events.allEvents()
+        .on('data', (event) => {
+        console.log(event);
+        setTest(event);
+        })
+        .on('error', console.error);
+    }
 
     function displayButton() {
         if(isApproved === false) {
@@ -89,7 +106,6 @@ function Plant(props) {
         if(level < 4){
             setLevel(level + 1);
             setTotalCost(totalCost * 10);
-            //checkApproval();
         }
     }
 
@@ -97,14 +113,11 @@ function Plant(props) {
         if(level > 1){
             setLevel(level - 1);
             setTotalCost(totalCost / 10);
-            //checkApproval();
         }
     }
 
     const checkApproval = async () => {
         let allowance = await props.getAllowance(coins[coinIndex]);
-        console.log('allowance =', allowance);
-        console.log('totalCost =', bigInt(totalCost * (10**18)));
         if(allowance < totalCost * (10**18)){
             setIsApproved(false);
         }
@@ -114,12 +127,20 @@ function Plant(props) {
     }
 
     const approve = async () => {
-        props.approve(totalCost, coins[coinIndex]);
+        if(props.isConnected){
+            props.approve(totalCost, coins[coinIndex]);
+        } else {
+            alert("connect metamask!");
+        }
     }
 
     const buyNFTree = async () => {
         let numCredits = totalCost / 10;
-        props.buyNFTree(numCredits, totalCost, coins[coinIndex]);
+        if(props.isConnected){
+            props.buyNFTree(numCredits, totalCost, coins[coinIndex]);
+        } else {
+            alert("connect metamask!");
+        }
     }
 
     const options = [

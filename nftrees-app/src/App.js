@@ -36,6 +36,8 @@ function App() {
   const[USDTContract, setUSDTContract] = useState();
 
   const[isLoading, setLoading] = useState(true);
+
+  const[test, setTest] = useState();
   const contractAddresses = {
     'NFTree' : '0x8a5cda6bd214A69DA67a774b071f55750A8cda7e',
     'Purchase' : '0xf47EaA986ba08A7d0cE634B00E4d47BB9eC70968',
@@ -45,7 +47,6 @@ function App() {
   }
 
   useEffect(() => {
-    console.log('app')
     const load = async () => {
       await loadWeb3();
     };
@@ -63,7 +64,13 @@ function App() {
       window.ethereum.on('networkChanged', function (accounts) {
         load();
       });
+
+    return () => {
+      console.log('cleaned up app');
+    };
     }
+
+    
 
     setLoading(false);
   },[]);
@@ -218,18 +225,25 @@ function App() {
     }
   }
 
+  /*DAIContract.events.Transfer()
+    .on('data', (event) => {
+        console.log(event);
+        window.location.reload();
+      })
+    .on('error', console.error);*/
+
   return (
     <div className="App">
       <Router>
         <Switch>
           <Route exact path = '/'>
             <Navbar account = {Currentaccount} connectWallet = {connectWallet}/>
-            <Plant getAllowance = {getAllowance} approve = {approve} buyNFTree = {buyNFTree}/>
+            <Plant getAllowance = {getAllowance} approve = {approve} buyNFTree = {buyNFTree} isConnected = {isConnected} DAIContract = {DAIContract}/>
           </Route>
 
           <Route exact path = '/impact'>
             <Navbar account = {Currentaccount} connectWallet = {connectWallet}/>
-            <Impact account = {Currentaccount}/>
+            <Impact account = {Currentaccount} isConnected = {isConnected}/>
           </Route>
         </Switch>
       </Router>

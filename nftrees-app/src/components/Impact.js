@@ -11,7 +11,15 @@ function Impact(props) {
     const[totalTransactions, setTotalTransactions] = useState(0);
 
     useEffect(() => {
+      if (props.isConnected){
         handleCalculateEmissions();
+      } else {
+        alert('connect metamask!');
+      }
+
+      return () => {
+        console.log('cleaned up impact');
+      };
     }, []);
 
 
