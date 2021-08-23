@@ -10,13 +10,23 @@ async function main() {
     const NFTree = await hre.ethers.getContractFactory("NFTree");
     const nftree = await NFTree.deploy();
 
-    // deploy Mycoin contract
-    const Mycoin = await hre.ethers.getContractFactory("Mycoin");
-    const mycoin = await Mycoin.deploy();
+    // deploy DAI contract
+    const DAI = await hre.ethers.getContractFactory("DAI");
+    const dai = await DAI.deploy();
+
+    // deploy USDC contract
+    const USDC = await hre.ethers.getContractFactory("USDC");
+    const usdc = await USDC.deploy();
+
+    // deploy USDT contract
+    const USDT = await hre.ethers.getContractFactory("USDT");
+    const usdt = await USDT.deploy();
   
     console.log("Purchase deployed to:", purchase.address);
     console.log("NFTree deployed to:", nftree.address);
-    console.log("Mycoin deployed to:", mycoin.address);
+    console.log("DAI deployed to:", dai.address);
+    console.log("USDC deployed to:", usdc.address);
+    console.log("USDT deployed to:", usdt.address);
   }
   
   main()

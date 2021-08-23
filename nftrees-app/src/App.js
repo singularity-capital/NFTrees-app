@@ -15,7 +15,9 @@ import bigInt from "big-integer";
 // import contract abis
 import NFTreeABI from './artifacts/contracts/NFTree.sol/NFTree.json';
 import PurchaseABI from './artifacts/contracts/Purchase.sol/Purchase.json';
-import MycoinABI from './artifacts/contracts/Mycoin.sol/Mycoin.json';
+import DAIABI from './artifacts/contracts/DAI.sol/DAI.json';
+import USDCABI from './artifacts/contracts/USDC.sol/USDC.json';
+import USDTABI from './artifacts/contracts/USDT.sol/USDT.json';
 
 // import components
 import Navbar from './components/Navbar';
@@ -29,13 +31,17 @@ function App() {
 
   const[NFTreeContract, setNFTreeContract] = useState();
   const[PurchaseContract, setPurchaseContract] = useState();
-  const[MycoinContract, setMycoinContract] = useState();
+  const[DAIContract, setDAIContract] = useState();
+  const[USDCContract, setUSDCContract] = useState();
+  const[USDTContract, setUSDTContract] = useState();
 
   const[isLoading, setLoading] = useState(true);
   const contractAddresses = {
-    'NFTree' : '0xC8483f868e41E996761a701aCeA884e963cF88Fe',
-    'Purchase' : '0xa44929195B0c3AF215c6efbe5c295cc6b99F7C44',
-    'Mycoin' : '0xdb744e329458968Bed5dA948d3B2e73CA7AB4C3a',
+    'NFTree' : '0x8a5cda6bd214A69DA67a774b071f55750A8cda7e',
+    'Purchase' : '0xf47EaA986ba08A7d0cE634B00E4d47BB9eC70968',
+    'DAI' : '0x8f55de35229e5eC7759f396dC58E12d636Ac1e8c',
+    'USDC' : '0x802B0f664b9c505eA0dbF633F8975C4B680A6354',
+    'USDT' : '0xf8Cb6F45D110b9d54cf0007C5bD0A4FE21bbCb75'
   }
 
   useEffect(() => {
@@ -114,21 +120,27 @@ function App() {
     // check
     await checkConnection();
 
-    // get smart contracts
-    const nftreeAddress = contractAddresses['NFTree'];
-    const purchaseAddress = contractAddresses['Purchase'];
-    const MycoinAddress = contractAddresses['Mycoin'];
-
     if(window.ethereum){ // update with contract addresses once deployed
-      setNFTreeContract(await new window.web3.eth.Contract(NFTreeABI.abi, nftreeAddress));
-      setPurchaseContract(await new window.web3.eth.Contract(PurchaseABI.abi, purchaseAddress));
-      setMycoinContract(await new window.web3.eth.Contract(MycoinABI.abi, MycoinAddress));
+      setNFTreeContract(await new window.web3.eth.Contract(NFTreeABI.abi, contractAddresses['NFTree']));
+      setPurchaseContract(await new window.web3.eth.Contract(PurchaseABI.abi, contractAddresses['Purchase']));
+      setDAIContract(await new window.web3.eth.Contract(DAIABI.abi, contractAddresses['DAI']));
+      setUSDCContract(await new window.web3.eth.Contract(USDCABI.abi, contractAddresses['USDC']));
+      setUSDTContract(await new window.web3.eth.Contract(USDTABI.abi, contractAddresses['USDT']));
     }
   }
 
-  const getAllowance = async () => { 
-    if(isConnected){   
-      let allowance = await MycoinContract.methods.allowance(Currentaccount, contractAddresses['Purchase']).call();
+  const getAllowance = async (coin) => { 
+    if(isConnected){  
+      let allowance;
+      if(coin === 'DAI') {
+        allowance = await DAIContract.methods.allowance(Currentaccount, contractAddresses['Purchase']).call();
+      }
+      else if (coin === 'USDC') {
+        allowance = await USDCContract.methods.allowance(Currentaccount, contractAddresses['Purchase']).call();
+      }
+      else if (coin === 'USDT') {
+        allowance = await USDTContract.methods.allowance(Currentaccount, contractAddresses['Purchase']).call();
+      } 
       return allowance;
     }
     else{
@@ -136,20 +148,29 @@ function App() {
     }
   }
 
-  const approve = async (totalCost) => {
+  const approve = async (totalCost, coin) => {
+    console.log(coin);
     let amount = String(bigInt(totalCost * (10**18)));
     if(isConnected){
-      await MycoinContract.methods.approve(contractAddresses['Purchase'], amount).send({from: Currentaccount});
+      if(coin === 'DAI') {
+        await DAIContract.methods.approve(contractAddresses['Purchase'], amount).send({from: Currentaccount});
+      }
+      else if (coin === 'USDC') {
+        await USDCContract.methods.approve(contractAddresses['Purchase'], amount).send({from: Currentaccount});
+      }
+      else if (coin === 'USDT') {
+        await USDTContract.methods.approve(contractAddresses['Purchase'], amount).send({from: Currentaccount});
+      }
     }
     else {
       alert('connect metamask wallet');
     }
   }
 
-  const buyNFTree = async (numCredits, totalCost, currency) => {   
+  const buyNFTree = async (numCredits, totalCost, coin) => {   
     let amount = String(bigInt(totalCost * (10**18))); 
     if(isConnected){
-      var today = new Date();
+      /*var today = new Date();
       var dd = String(today.getDate()).padStart(2, '0');
       var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0
       var yyyy = today.getFullYear();
@@ -160,12 +181,12 @@ function App() {
           date: today,
           wallet: Currentaccount,
           amount: totalCost,
-          currency: currency,
+          coin: coin,
           carbon_credits: numCredits,
           trees_planted: numCredits
       });
-      console.log("DB INSERT");
-      await PurchaseContract.methods.buyNFTree(numCredits, amount, currency).send({from: Currentaccount});
+      console.log("DB INSERT");*/
+      await PurchaseContract.methods.buyNFTree(numCredits, amount, coin).send({from: Currentaccount});
     }
     else {
       alert('connect metamask wallet');

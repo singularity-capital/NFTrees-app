@@ -3,7 +3,9 @@ require('dotenv').config();
 const fs = require('fs');
 const purchaseABI = require("../nftrees-app/src/artifacts/contracts/Purchase.sol/Purchase.json").abi;
 const nftreeABI = require("../nftrees-app/src/artifacts/contracts/NFTree.sol/NFTree.json").abi;
-const mycoinABI = require("../nftrees-app/src/artifacts/contracts/Mycoin.sol/Mycoin.json").abi;
+const daiABI = require("../nftrees-app/src/artifacts/contracts/DAI.sol/DAI.json").abi;
+const usdcABI = require("../nftrees-app/src/artifacts/contracts/USDC.sol/USDC.json").abi;
+const usdtABI = require("../nftrees-app/src/artifacts/contracts/USDT.sol/USDT.json").abi;
 
 task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
     const accounts = await hre.ethers.getSigners();
@@ -71,7 +73,7 @@ task("getInformation", "Retrieves contract information")
     console.log("Token URI 100:", await purchase.methods.getTokenHash(100).call());
     console.log("Token URI 1000:", await purchase.methods.getTokenHash(1000).call());
 
-    // get coinsd
+    // get coins
     console.log("coin list:", await purchase.methods.getCoins().call());
 });
 
@@ -89,18 +91,39 @@ task("addToken", "Add token to purchase contract")
     await purchase.methods.addToken(taskArgs.address, taskArgs.token).send({from: owner.address});
 });
 
-task("mint", "Mint Mycoin to address")
+task("mint", "Mint token to address")
+  .addParam("token", "Name of token")
   .setAction(async (taskArgs) => {
     // set account
     [owner] = await hre.ethers.getSigners();
 
     // create contract instances
-    var mycoin = new web3.eth.Contract(mycoinABI, process.env.MYCOIN_ADDRESS);
+    if(taskArgs.token == 'DAI'){
+      var dai = new web3.eth.Contract(daiABI, process.env.DAI_ADDRESS);
 
-    // mint token to owner
-    await mycoin.methods.mint(owner.address).send({from: owner.address});
-    var balance = await mycoin.methods.balanceOf(owner.address).call();
-    console.log("Mycoin balance:", web3.utils.fromWei(balance, 'ether'));
+      // mint token to owner
+      await dai.methods.mint(owner.address).send({from: owner.address});
+      var balance = await dai.methods.balanceOf(owner.address).call();
+      console.log("DAI balance:", web3.utils.fromWei(balance, 'ether'));
+    }
+    else if (taskArgs.token == 'USDC') {
+      var usdc = new web3.eth.Contract(usdcABI, process.env.USDC_ADDRESS);
+
+      // mint token to owner
+      await usdc.methods.mint(owner.address).send({from: owner.address});
+      var balance = await usdc.methods.balanceOf(owner.address).call();
+      console.log("USDC balance:", web3.utils.fromWei(balance, 'ether'));
+    }
+    else if (taskArgs.token == 'USDT') {
+      var usdt = new web3.eth.Contract(usdtABI, process.env.USDT_ADDRESS);
+
+      // mint token to owner
+      await usdt.methods.mint(owner.address).send({from: owner.address});
+      var balance = await usdt.methods.balanceOf(owner.address).call();
+      console.log("USDT balance:", web3.utils.fromWei(balance, 'ether'));
+    } else {
+      console.log('enter valid coin');
+    }
 });
 
 task("purchaseNFTree", "Purchase an nftree")

@@ -10,10 +10,11 @@ import usdt from '../assets/usdt_logo.png';
 
 function Plant(props) {
     const[level, setLevel] = useState(1);
-    const[currency, setCurrency] = useState(0);
+    const[coinIndex, setcoinIndex] = useState(0);
     const[totalCost, setTotalCost] = useState(10);
     const[coinMenuOpen, setCoinMenuOpen] = useState(false);
     const[isApproved, setIsApproved] = useState(false);
+
     const coins = [
         'DAI',
         'USDC',
@@ -29,7 +30,7 @@ function Plant(props) {
         if(isApproved === false) {
             return(
                 <button className = 'plantButton' onClick = {approve}>
-                    <p> APPROVE {totalCost} {coins[currency]}</p> 
+                    <p> APPROVE {totalCost} {coins[coinIndex]}</p> 
                 </button>
             )
         } else {
@@ -70,13 +71,13 @@ function Plant(props) {
 
     function displayTotal() {
         var coin;
-        if (currency === 0){
+        if (coinIndex === 0){
             coin = 'DAI';
         }
-        else if (currency === 1) {
+        else if (coinIndex === 1) {
             coin = 'USDC';
         }
-        else if (currency === 2) {
+        else if (coinIndex === 2) {
             coin = 'USDT';
         }
         return(
@@ -101,7 +102,7 @@ function Plant(props) {
     }
 
     const checkApproval = async () => {
-        let allowance = await props.getAllowance();
+        let allowance = await props.getAllowance(coins[coinIndex]);
         console.log('allowance =', allowance);
         console.log('totalCost =', bigInt(totalCost * (10**18)));
         if(allowance < totalCost * (10**18)){
@@ -113,12 +114,12 @@ function Plant(props) {
     }
 
     const approve = async () => {
-        props.approve(totalCost);
+        props.approve(totalCost, coins[coinIndex]);
     }
 
     const buyNFTree = async () => {
         let numCredits = totalCost / 10;
-        props.buyNFTree(numCredits, totalCost, coins[currency]);
+        props.buyNFTree(numCredits, totalCost, coins[coinIndex]);
     }
 
     const options = [
@@ -131,15 +132,14 @@ function Plant(props) {
     function changeCurrency(props) {
         var currency = props.value;
         if (currency === 'DAI'){
-            setCurrency(0);
+            setcoinIndex(0);
         }
         else if (currency === 'USDC') {
-            setCurrency(1);
+            setcoinIndex(1);
         }
         else if (currency === 'USDT') {
-            setCurrency(2);
+            setcoinIndex(2);
         }
-        console.log(currency);
     }
 
   return (
@@ -166,7 +166,7 @@ function Plant(props) {
 
                     <div className = 'currencySelector'>
                         <div className = 'currency'> 
-                            <Dropdown className = 'currencyDropdown' options={options} onChange={changeCurrency} value={options[currency]} placeholder="Select currency"/>
+                            <Dropdown className = 'currencyDropdown' options={options} onChange={changeCurrency} value={options[coinIndex]} placeholder="Select currency"/>
                         </div>
 
                         <div className = 'total'> 
