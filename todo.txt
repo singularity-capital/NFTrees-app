@@ -1,2 +1,0 @@
-add setTokenURI to Purchase.sol/ overwrite tokenURI function to return the set tokenURI
-make NFTree enumerable and update tokensOfOwner

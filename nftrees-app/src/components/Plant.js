@@ -14,6 +14,11 @@ function Plant(props) {
     const[totalCost, setTotalCost] = useState(10);
     const[coinMenuOpen, setCoinMenuOpen] = useState(false);
     const[isApproved, setIsApproved] = useState(false);
+    const coins = [
+        'DAI',
+        'USDC',
+        'USDT'
+    ];
 
     useEffect(() => {
         const defaultOption = options[0];
@@ -24,7 +29,7 @@ function Plant(props) {
         if(isApproved === false) {
             return(
                 <button className = 'plantButton' onClick = {approve}>
-                    <p> APPROVE </p> 
+                    <p> APPROVE {totalCost} {coins[currency]}</p> 
                 </button>
             )
         } else {
@@ -113,7 +118,7 @@ function Plant(props) {
 
     const buyNFTree = async () => {
         let numCredits = totalCost / 10;
-        props.buyNFTree(numCredits, totalCost, currency);
+        props.buyNFTree(numCredits, totalCost, coins[currency]);
     }
 
     const options = [
