@@ -1,5 +1,5 @@
 // base imports
-import React, { PureComponent , useState, useEffect, useImperativeHandle} from 'react';
+import React from 'react';
 import './Impact.css';
 import { calculateAddressEmissions } from "ethereum-emissions-calculator";
 import CountUp from 'react-countup';
