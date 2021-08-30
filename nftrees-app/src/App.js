@@ -10,6 +10,7 @@ import {
   Route,
 } from "react-router-dom";
 import bigInt from "big-integer";
+import firebase from './firebase';
 
 // import contract abis
 import NFTreeABI from './artifacts/contracts/NFTree.sol/NFTree.json';
@@ -184,28 +185,31 @@ class App extends React.Component {
   buyNFTree = async (numCredits, totalCost, coin) => {   
     let amount = String(bigInt(totalCost * (10**18))); 
     if(this.state.isConnected){
-      /*var today = new Date();
-      var dd = String(today.getDate()).padStart(2, '0');
-      var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0
-      var yyyy = today.getFullYear();
-      today = mm + '/' + dd + '/' + yyyy;
-
-      var database = firebase.database().ref('transactions');
-      database.push().set({
-          date: today,
-          wallet: Currentaccount,
-          amount: totalCost,
-          coin: coin,
-          carbon_credits: numCredits,
-          trees_planted: numCredits
-      });
-      console.log("DB INSERT");*/
       console.log(numCredits, amount, coin, this.state.Currentaccount)
       await this.state.PurchaseContract.methods.buyNFTree(numCredits, amount, coin).send({from: this.state.Currentaccount});
     }
     else {
       alert('connect metamask wallet');
     }
+  }
+
+  insertDB = async (numCredits, totalCost, coin) => {
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0
+    var yyyy = today.getFullYear();
+    today = mm + '/' + dd + '/' + yyyy;
+
+    var database = firebase.database().ref('transactions');
+    await database.push().set({
+        date: today,
+        wallet: this.state.Currentaccount,
+        amount: totalCost,
+        coin: coin,
+        carbon_credits: numCredits,
+        trees_planted: numCredits
+    });
+    console.log("DB INSERT");
   }
 
   calculateImpact = async () => {    
@@ -255,7 +259,7 @@ class App extends React.Component {
             <Switch>
               <Route exact path = '/'>
                 <Navbar account = {this.state.Currentaccount} connectWallet = {this.connectWallet}/>
-                <Plant getAllowance = {this.getAllowance} approve = {this.approve} buyNFTree = {this.buyNFTree} isConnected = {this.state.isConnected} DAIContract = {this.state.DAIContract} USDCContract = {this.state.USDCContract} USDTContract = {this.state.USDTContract}/>
+                <Plant getAllowance = {this.getAllowance} approve = {this.approve} buyNFTree = {this.buyNFTree} insertDB = {this.insertDB} isConnected = {this.state.isConnected} NFTreeContract = {this.state.NFTreeContract} DAIContract = {this.state.DAIContract} USDCContract = {this.state.USDCContract} USDTContract = {this.state.USDTContract}/>
               </Route>
     
               <Route exact path = '/impact'>

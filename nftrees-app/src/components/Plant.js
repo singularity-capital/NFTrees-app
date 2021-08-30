@@ -64,6 +64,16 @@ class Plant extends React.Component {
             this.checkApproval();
         })
         .on('error', console.error);
+
+        this.props.NFTreeContract.events.allEvents()
+        .on('data', (event) => {
+            console.log(event);
+            let numCredits = this.state.totalCost / 10;
+            this.props.insertDB(numCredits, this.state.totalCost, this.coins[this.state.coinIndex]);
+        })
+        .on('error', console.error);
+
+
     }
 
     displayButton = () => {
