@@ -4,6 +4,7 @@ import './Impact.css';
 import { calculateAddressEmissions } from "ethereum-emissions-calculator";
 import CountUp from 'react-countup';
 import firebase from '../firebase';
+import functions from "firebase/functions";
 
 class Impact extends React.Component {
 
