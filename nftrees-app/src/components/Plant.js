@@ -46,29 +46,26 @@ class Plant extends React.Component {
 
         this.props.DAIContract.events.allEvents()
         .on('data', (event) => {
-            console.log(event);
             this.checkApproval();
         })
         .on('error', console.error);
 
         this.props.USDCContract.events.allEvents()
         .on('data', (event) => {
-            console.log(event);
             this.checkApproval();
         })
         .on('error', console.error);
 
         this.props.USDTContract.events.allEvents()
         .on('data', (event) => {
-            console.log(event);
             this.checkApproval();
         })
         .on('error', console.error);
 
-        this.props.NFTreeContract.events.allEvents()
+        this.props.NFTreeContract.events.Transfer()
         .on('data', (event) => {
-            console.log(event);
             let numCredits = this.state.totalCost / 10;
+            console.log('event', this.coins[this.state.coinIndex])
             this.props.insertDB(numCredits, this.state.totalCost, this.coins[this.state.coinIndex]);
         })
         .on('error', console.error);

@@ -11,6 +11,7 @@ import {
 } from "react-router-dom";
 import bigInt from "big-integer";
 import firebase from './firebase';
+import database from 'firebase/database';
 
 // import contract abis
 import NFTreeABI from './artifacts/contracts/NFTree.sol/NFTree.json';
@@ -193,7 +194,7 @@ class App extends React.Component {
     }
   }
 
-  insertDB = async (numCredits, totalCost, coin) => {
+  insertDB = (numCredits, totalCost, coin) => {
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
     var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0
@@ -201,7 +202,7 @@ class App extends React.Component {
     today = mm + '/' + dd + '/' + yyyy;
 
     var database = firebase.database().ref('transactions');
-    await database.push().set({
+    database.push().set({
         date: today,
         wallet: this.state.Currentaccount,
         amount: totalCost,
@@ -209,7 +210,7 @@ class App extends React.Component {
         carbon_credits: numCredits,
         trees_planted: numCredits
     });
-    console.log("DB INSERT");
+    console.log("DB INSERT", coin);
   }
 
   calculateImpact = async () => {    
@@ -236,13 +237,6 @@ class App extends React.Component {
       alert('connect metamask wallet');
     }
   }
-
-  /*DAIContract.events.Transfer()
-    .on('data', (event) => {
-        console.log(event);
-        window.location.reload();
-      })
-    .on('error', console.error);*/
   
   render () {
     if(this.state.isLoading){
