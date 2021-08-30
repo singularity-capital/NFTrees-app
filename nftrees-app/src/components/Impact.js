@@ -13,11 +13,24 @@ class Impact extends React.Component {
     this.state = {
       totalGas: 0,
       totalKg: 0,
-      totalTransactions: 0
+      totalTransactions: 0,
+      totalNFTrees: 0, 
+      totalOffset: 0,
+      totalTrees: 0,
+      isLoading: true
     }; 
+  }
 
-    if (props.isConnected){
-      this.handleCalculateEmissions(props.account);
+  componentDidMount = async() => {
+    if (this.props.isConnected){
+      await this.handleCalculateEmissions(this.props.account);
+      let impact = await this.props.calculateImpact();
+      this.setState({
+        totalNFTrees: impact['nftrees'], 
+        totalOffset: impact['offset'],
+        totalTrees: impact['treesPlanted'],
+        isLoading: false
+      })
     } else {
       alert('connect metamask!');
     }
@@ -56,57 +69,82 @@ class Impact extends React.Component {
       totalTransactions: transactions
     });
   }
+
+  displayCarbonFootprint = () => {
+    if(this.state.totalKg - this.state.totalOffset * 1000 <= 0){
+      return(
+        <p><CountUp className = 'carbonFootprintValue' end = {this.state.totalKg - this.state.totalOffset * 1000} duration = {1} separator ={','} style = {{color: '#74CA86'}}/> kg CO2</p>
+      )
+    }
+    else{
+      return(
+        <p><CountUp className = 'carbonFootprintValue' end = {this.state.totalKg - this.state.totalOffset * 1000} duration = {1} separator ={','}/> kg CO2</p>
+      )
+    }
+  }
   
   render() {
-    return (
-      <div className="Impact">
-        <div className = 'impactContainer'>
-          <div className = 'dashboard'>
-            <div className = 'dashboardHeader'>
-              <p className = 'dashboardTitle'>IMPACT DASHBOARD</p>
-              <p className = 'carbonFootprint'>CARBON FOOTPRINT ⓘ</p>
-              <p className = 'carbonFootprintValue'><CountUp className = 'carbonFootprintValue' end = {this.state.totalKg} duration = {1} separator ={','}/> kg CO2</p>
-              
-            </div>
-            <p className = 'emissionsTitle'>EMISSIONS</p>
-            <div className = 'dashboardContent'>
-              <div className = 'dashboardLeft'>
-                <p className = 'contentHeader'>Transactions</p>
-                <CountUp className = 'emissionsValue' end = {this.state.totalTransactions} duration = {1} separator ={','}/>
-              </div>
-              <div className = 'dashboardMiddle'>
-                <p className = 'contentHeader'>Gas spent (wei)</p>
-                <CountUp className = 'emissionsValue' end = {this.state.totalGas} duration = {1} separator ={','}/>
-              </div>
-              <div className = 'dashboardRight'>
-                <p className = 'contentHeader'>CO2 produced (kg)</p>
-                <CountUp className = 'emissionsValue' end = {this.state.totalKg} duration = {1} separator ={','}/>
-              </div>
-            </div>
-            <p className = 'impactTitle'>IMPACT</p>
-            <div className = 'dashboardContent'>
-              <div className = 'dashboardLeft'>
-                <p className = 'contentHeader'>NFTrees</p>
-                <CountUp className = 'impactValue' end = {this.state.totalTransactions} duration = {1} separator ={','}/>
-              </div>
-              <div className = 'dashboardRight'>
-                <p className = 'contentHeader'>Trees planted</p>
-                <CountUp className = 'impactValue' end = {this.state.totalTransactions} duration = {1} separator ={','}/>
-              </div>
-              <div className = 'dashboardMiddle'>
-                <p className = 'contentHeader'>CO2 offset</p>
-                <CountUp className = 'impactValue' end = {this.state.totalTransactions} duration = {1} separator ={','}/>
-              </div>
-            </div>
-            <div className = 'dashboardSummary'>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. 
-              Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus 
-              nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.
+    if(this.state.isLoading === true){
+      return (
+        <div className="Impact">
+          <div className = 'impactContainer'>
+            <div className = 'dashboard'>
+              calculating impact...
             </div>
           </div>
         </div>
-      </div>
-    );
+      );
+    }
+    else {
+      return (
+        <div className="Impact">
+          <div className = 'impactContainer'>
+            <div className = 'dashboard'>
+              <div className = 'dashboardHeader'>
+                <p className = 'dashboardTitle'>IMPACT DASHBOARD</p>
+                <p className = 'carbonFootprint'>CARBON FOOTPRINT ⓘ</p>
+                <div className = 'carbonFootprintValue'>{this.displayCarbonFootprint()}</div>
+              </div>
+              <p className = 'emissionsTitle'>EMISSIONS</p>
+              <div className = 'dashboardContent'>
+                <div className = 'dashboardLeft'>
+                  <p className = 'contentHeader'>Transactions</p>
+                  <CountUp className = 'emissionsValue' end = {this.state.totalTransactions} duration = {1} separator ={','}/>
+                </div>
+                <div className = 'dashboardMiddle'>
+                  <p className = 'contentHeader'>Gas spent (wei)</p>
+                  <CountUp className = 'emissionsValue' end = {this.state.totalGas} duration = {1} separator ={','}/>
+                </div>
+                <div className = 'dashboardRight'>
+                  <p className = 'contentHeader'>CO2 produced (kg)</p>
+                  <CountUp className = 'emissionsValue' end = {this.state.totalKg} duration = {1} separator ={','}/>
+                </div>
+              </div>
+              <p className = 'impactTitle'>IMPACT</p>
+              <div className = 'dashboardContent'>
+                <div className = 'dashboardLeft'>
+                  <p className = 'contentHeader'>NFTrees</p>
+                  <CountUp className = 'impactValue' end = {this.state.totalNFTrees} duration = {1} separator ={','}/>
+                </div>
+                <div className = 'dashboardRight'>
+                  <p className = 'contentHeader'>Trees planted</p>
+                  <CountUp className = 'impactValue' end = {this.state.totalTrees} duration = {1} separator ={','}/>
+                </div>
+                <div className = 'dashboardMiddle'>
+                  <p className = 'contentHeader'>CO2 offset (kg)</p>
+                  <CountUp className = 'impactValue' end = {this.state.totalOffset * 1000} duration = {1} separator ={','}/>
+                </div>
+              </div>
+              <div className = 'dashboardSummary'>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. 
+                Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus 
+                nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
   }
 }
 

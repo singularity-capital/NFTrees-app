@@ -213,7 +213,8 @@ class App extends React.Component {
     console.log("DB INSERT", coin);
   }
 
-  calculateImpact = async () => {    
+  calculateImpact = async () => {  
+    console.log('calculate impact');  
     if(this.state.isConnected){
       let totalOffset = 0;
       let totalTrees = 0
@@ -228,10 +229,16 @@ class App extends React.Component {
           totalTrees += trees;
         }
       }
+    
+      let impact = {
+        nftrees: tokens.length,
+        offset: totalOffset,
+        treesPlanted: totalTrees
+      }
 
-      console.log("total NFTrees =", tokens.length)
-      console.log("total offset =", totalOffset);
-      console.log("total number of trees planted = ", totalTrees)
+      console.log(impact);
+
+      return(impact);
     }
     else {
       alert('connect metamask wallet');
@@ -258,7 +265,7 @@ class App extends React.Component {
     
               <Route exact path = '/impact'>
                 <Navbar account = {this.state.Currentaccount} connectWallet = {this.connectWallet}/>
-                <Impact account = {this.state.Currentaccount} isConnected = {this.state.isConnected}/>
+                <Impact account = {this.state.Currentaccount} isConnected = {this.state.isConnected} calculateImpact = {this.calculateImpact}/>
               </Route>
             </Switch>
           </Router>

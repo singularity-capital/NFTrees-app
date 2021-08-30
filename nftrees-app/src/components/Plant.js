@@ -90,9 +90,26 @@ class Plant extends React.Component {
     }
 
     displayNFTree = () => {
-        return(
-            <img src = {card} height = {560} width = {400} alt = {'Could not load'}/>
-        )
+        if(this.state.level === 1){
+            return(
+                <img src = {card} height = {560} width = {400} alt = {'Could not load'}/>
+            )
+        } 
+        else if(this.state.level === 2){
+            return(
+                <img src = {card} height = {560} width = {400} alt = {'Could not load'}/>
+            )
+        }
+        else if(this.state.level === 3){
+            return(
+                <img src = {card} height = {560} width = {400} alt = {'Could not load'}/>
+            )
+        }
+        else{
+            return(
+                <img src = {card} height = {560} width = {400} alt = {'Could not load'}/>
+            )
+        }
     }
 
     displayLevel = () => {
