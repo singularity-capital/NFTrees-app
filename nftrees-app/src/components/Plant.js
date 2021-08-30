@@ -7,7 +7,7 @@ import dai from '../assets/dai_logo.png';
 import usdc from '../assets/usdc_logo.png';
 import usdt from '../assets/usdt_logo.png';
 
-//import Web3 from 'web3';
+// import Web3 from 'web3';
 
 class Plant extends React.Component {
     constructor (props) {
@@ -33,19 +33,32 @@ class Plant extends React.Component {
             { value: 'USDC', label: <div className = 'currencyOption'><div className = 'currencyLogo'><img src={usdc} height="20px" width="20px" alt = {'Could not load'}/></div><p className = 'currencyText'>USDC</p></div> },
             { value: 'USDT', label: <div className = 'currencyOption'><div className = 'currencyLogo'><img src={usdt} height="20px" width="20px" alt = {'Could not load'}/></div><p className = 'currencyText'>USDT</p></div> },
         ];
-
         this.defaultOption = this.options[0];
-
-        this.addEventListeners();
     }
 
     componentDidMount = async() => {
+        this.addEventListeners();
         this.checkApproval();
     }
 
     addEventListeners = async () => {
-        console.log('eventListener');
+        console.log('eventListener1');
+
         this.props.DAIContract.events.allEvents()
+        .on('data', (event) => {
+            console.log(event);
+            this.checkApproval();
+        })
+        .on('error', console.error);
+
+        this.props.USDCContract.events.allEvents()
+        .on('data', (event) => {
+            console.log(event);
+            this.checkApproval();
+        })
+        .on('error', console.error);
+
+        this.props.USDTContract.events.allEvents()
         .on('data', (event) => {
             console.log(event);
             this.checkApproval();

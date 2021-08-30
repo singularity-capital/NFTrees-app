@@ -255,7 +255,7 @@ class App extends React.Component {
             <Switch>
               <Route exact path = '/'>
                 <Navbar account = {this.state.Currentaccount} connectWallet = {this.connectWallet}/>
-                <Plant getAllowance = {this.getAllowance} approve = {this.approve} buyNFTree = {this.buyNFTree} isConnected = {this.state.isConnected} DAIContract = {this.state.DAIContract}/>
+                <Plant getAllowance = {this.getAllowance} approve = {this.approve} buyNFTree = {this.buyNFTree} isConnected = {this.state.isConnected} DAIContract = {this.state.DAIContract} USDCContract = {this.state.USDCContract} USDTContract = {this.state.USDTContract}/>
               </Route>
     
               <Route exact path = '/impact'>
