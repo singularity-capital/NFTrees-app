@@ -77,7 +77,7 @@ class Plant extends React.Component {
         if(this.state.isApproved === false) {
             return(
                 <button className = 'plantButton' onClick = {this.approve}>
-                    <p> APPROVE {this.state.totalCost} {this.coins[this.state.coinIndex]}</p> 
+                    <p> APPROVE {this.coins[this.state.coinIndex]} </p> 
                 </button>
             )
         } else {
@@ -188,7 +188,7 @@ class Plant extends React.Component {
 
     approve = async () => {
         if(this.props.isConnected){
-            this.props.approve(this.state.totalCost, this.coins[this.state.coinIndex]);
+            this.props.approve(10000, this.coins[this.state.coinIndex]);
         } else {
             alert("connect metamask!");
         }
