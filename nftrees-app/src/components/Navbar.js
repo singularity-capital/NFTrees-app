@@ -3,7 +3,6 @@ import {NavLink} from "react-router-dom";
 import './Navbar.css';
 import logo from '../assets/logo.png';
 import eth from '../assets/eth_logo.png';
-//import polygon from '../assets/polygon_logo.png';
 
 function Navbar (props){
 
@@ -31,9 +30,9 @@ function Navbar (props){
             {/* display navbar links */}
             <a className = "navbar-Brand" href = 'https://nftrees.com/'> <img src = {logo} height = {50} alt = {'Could not load'}/> </a>
             <div className = 'spacer'/>
-            <NavLink exact activeClassName = "active-navbar-Link" className = "navbar-Link" to = '/'> Plant </NavLink>
+            <NavLink exact activeClassName = "active-navbar-Link" className = "navbar-Link" to = '/'> PLANT </NavLink>
             <div className = 'spacer'/>
-            <NavLink exact activeClassName = "active-navbar-Link" className = "navbar-Link" to = '/impact'> My impact </NavLink>
+            <NavLink exact activeClassName = "active-navbar-Link" className = "navbar-Link" to = '/impact'> MY IMPACT </NavLink>
             <div className = 'spacer'/>
 
             {/* display user address */}
