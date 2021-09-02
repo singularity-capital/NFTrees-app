@@ -42,7 +42,6 @@ class Plant extends React.Component {
     }
 
     addEventListeners = async () => {
-        console.log('eventListener1');
 
         this.props.DAIContract.events.allEvents()
         .on('data', (event) => {

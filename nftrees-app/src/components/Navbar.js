@@ -7,17 +7,13 @@ import eth from '../assets/eth_logo.png';
 function Navbar (props){
 
     function SubstringAddress () {
-        // if address variable is an address, substring to save space
         if(props.account){
-            if (props.account.length > 40){
+            if (props.Currentnetwork === 4){
                 return(<div className = 'addressContainer'><img src = {eth} height = {20} alt = {'Could not load'}/> <p className = 'addressText'>{props.account.substring(0, 5) + "..." + props.account.substring(36, 42)}</p></div>)
             }
             // if network is wrong display 'wrong network'
-            else if (props.account === 'wrong network'){
-                return(<div className = 'addressContainer'><p className = 'addressText'>{props.account}</p></div>)
-            }
-            else{
-                return(<button onClick = {props.connectWallet} className = 'connectWallet'> <img src = {eth} height = {20} alt = {'Could not load'}/> <p className = 'connectWalletText'>connect wallet</p> </button>)
+            else {
+                return(<div className = 'addressContainer'><p className = 'addressText'>wrong network</p></div>)
             }
         }
         else {

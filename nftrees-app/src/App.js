@@ -49,8 +49,6 @@ class App extends React.Component {
       'USDC' : '0x802B0f664b9c505eA0dbF633F8975C4B680A6354',
       'USDT' : '0xf8Cb6F45D110b9d54cf0007C5bD0A4FE21bbCb75'
     }
-
-    console.log('right before load');
     // initialize web3 and load blockchain data
 
     this.setState = this.setState.bind(this);
@@ -59,9 +57,23 @@ class App extends React.Component {
 
   componentDidMount = async () =>  {
     await this.load();
+ 
     this.setState({
       isLoading: false
     });
+
+    // add metamask event listeners
+
+    window.ethereum.on('accountsChanged', (accounts) => {
+      console.log('account changed');
+      this.load();
+    });
+    
+    window.ethereum.on('chainChanged', async (chainId) => {
+      console.log('chain changed');
+      this.load();
+    });
+
   }
 
   load = async () => {
@@ -100,8 +112,7 @@ class App extends React.Component {
     if(networkId !== 4){
       this.setState({
         isConnected: false,
-        Currentaccount: 'wrong network',
-        Currentnetork: networkId,
+        Currentnetwork: networkId,
       });
     } else {
       this.setState({
@@ -126,16 +137,7 @@ class App extends React.Component {
     // check
     await this.checkConnection();
 
-    if(window.ethereum){ // update with contract addresses once deployed
-
-      /*this.state = {
-        NFTreeContract: await new window.web3.eth.Contract(NFTreeABI.abi, this.contractAddresses['NFTree']),
-        PurchaseContract: await new window.web3.eth.Contract(PurchaseABI.abi, this.contractAddresses['Purchase']),
-        DAIContract: await new window.web3.eth.Contract(DAIABI.abi, this.contractAddresses['DAI']),
-        USDCContract: await new window.web3.eth.Contract(USDCABI.abi, this.contractAddresses['USDC']),
-        USDTContract: await new window.web3.eth.Contract(USDTABI.abi, this.contractAddresses['USDT']),
-    };*/
-      
+    if(window.ethereum){
       this.setState({
         NFTreeContract: await new window.web3.eth.Contract(NFTreeABI.abi, this.contractAddresses['NFTree']),
         PurchaseContract: await new window.web3.eth.Contract(PurchaseABI.abi, this.contractAddresses['Purchase']),
@@ -259,12 +261,12 @@ class App extends React.Component {
           <Router>
             <Switch>
               <Route exact path = '/'>
-                <Navbar account = {this.state.Currentaccount} connectWallet = {this.connectWallet}/>
+                <Navbar account = {this.state.Currentaccount} connectWallet = {this.connectWallet} isConnected = {this.state.isConnected} Currentnetwork = {this.state.Currentnetwork}/>
                 <Plant getAllowance = {this.getAllowance} approve = {this.approve} buyNFTree = {this.buyNFTree} insertDB = {this.insertDB} isConnected = {this.state.isConnected} NFTreeContract = {this.state.NFTreeContract} DAIContract = {this.state.DAIContract} USDCContract = {this.state.USDCContract} USDTContract = {this.state.USDTContract}/>
               </Route>
     
               <Route exact path = '/impact'>
-                <Navbar account = {this.state.Currentaccount} connectWallet = {this.connectWallet}/>
+                <Navbar account = {this.state.Currentaccount} connectWallet = {this.connectWallet} isConnected = {this.state.isConnected} Currentnetwork = {this.state.Currentnetwork}/>
                 <Impact account = {this.state.Currentaccount} isConnected = {this.state.isConnected} calculateImpact = {this.calculateImpact}/>
               </Route>
             </Switch>
