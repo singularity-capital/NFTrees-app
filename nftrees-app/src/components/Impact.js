@@ -74,13 +74,24 @@ class Impact extends React.Component {
   displayCarbonFootprint = () => {
     if(this.state.totalKg - this.state.totalOffset * 1000 <= 0){
       return(
-        <p><CountUp className = 'carbonFootprintValue' end = {this.state.totalKg - this.state.totalOffset * 1000} duration = {1} separator ={','} style = {{color: '#74CA86'}}/> kg CO2</p>
+        <div><CountUp className = 'carbonFootprintValue' end = {this.state.totalKg - this.state.totalOffset * 1000} duration = {1} separator ={','} style = {{color: '#74CA86'}}/> kg CO<sub>2</sub></div>
       )
     }
     else{
       return(
-        <p><CountUp className = 'carbonFootprintValue' end = {this.state.totalKg - this.state.totalOffset * 1000} duration = {1} separator ={','}/> kg CO2</p>
+        <div><CountUp className = 'carbonFootprintValue' end = {this.state.totalKg - this.state.totalOffset * 1000} duration = {1} separator ={','}/> kg CO<sub>2</sub></div>
       )
+    }
+  }
+
+  summaryOutput = () => {
+    const delta = this.state.totalKg - this.state.totalOffset * 1000;
+    if (delta < 0) {
+      return "negative!";
+    } else if (delta > 0) {
+      return "positive. Plant more NFTrees to go carbon negative!";
+    } else {
+      return "neutral. Plant more NFTrees to go carbon negative!";
     }
   }
   
@@ -103,7 +114,7 @@ class Impact extends React.Component {
             <div className = 'dashboard'>
               <div className = 'dashboardHeader'>
                 <p className = 'dashboardTitle'>IMPACT DASHBOARD</p>
-                <p className = 'carbonFootprint'>CARBON FOOTPRINT ⓘ</p>
+                <p className = 'carbonFootprint'>CARBON FOOTPRINT</p>
                 <div className = 'carbonFootprintValue'>{this.displayCarbonFootprint()}</div>
               </div>
               <p className = 'emissionsTitle'>EMISSIONS</p>
@@ -113,33 +124,33 @@ class Impact extends React.Component {
                   <CountUp className = 'emissionsValue' end = {this.state.totalTransactions} duration = {1} separator ={','}/>
                 </div>
                 <div className = 'dashboardMiddle'>
-                  <p className = 'contentHeader'>Gas spent (wei)</p>
+                  <p className = 'contentHeader'>Gas Spent (wei)</p>
                   <CountUp className = 'emissionsValue' end = {this.state.totalGas} duration = {1} separator ={','}/>
                 </div>
                 <div className = 'dashboardRight'>
-                  <p className = 'contentHeader'>CO2 produced (kg)</p>
+                  <p className = 'contentHeader'>CO<sub>2</sub> Produced (kg)</p>
                   <CountUp className = 'emissionsValue' end = {this.state.totalKg} duration = {1} separator ={','}/>
                 </div>
               </div>
-              <p className = 'impactTitle'>IMPACT</p>
+              <p className = 'impactTitle'>OFFSETS</p>
               <div className = 'dashboardContent'>
                 <div className = 'dashboardLeft'>
                   <p className = 'contentHeader'>NFTrees</p>
                   <CountUp className = 'impactValue' end = {this.state.totalNFTrees} duration = {1} separator ={','}/>
                 </div>
                 <div className = 'dashboardRight'>
-                  <p className = 'contentHeader'>Trees planted</p>
+                  <p className = 'contentHeader'>Trees Planted</p>
                   <CountUp className = 'impactValue' end = {this.state.totalTrees} duration = {1} separator ={','}/>
                 </div>
                 <div className = 'dashboardMiddle'>
-                  <p className = 'contentHeader'>CO2 offset (kg)</p>
+                  <p className = 'contentHeader'>CO<sub>2</sub> Offset (kg)</p>
                   <CountUp className = 'impactValue' end = {this.state.totalOffset * 1000} duration = {1} separator ={','}/>
                 </div>
               </div>
               <div className = 'dashboardSummary'>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. 
-                Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus 
-                nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.
+                Your on-chain activity has created approximately {this.state.totalKg.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} kg of carbon emissions. With {this.state.totalNFTrees} NFTrees 
+                purchased, you have succesfully offset and sequestered {(this.state.totalOffset * 1000).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} kg of carbon from the environment. 
+                This makes your Ethereum wallet carbon {this.summaryOutput()} 
               </div>
             </div>
           </div>
