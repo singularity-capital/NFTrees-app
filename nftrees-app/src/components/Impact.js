@@ -150,7 +150,8 @@ class Impact extends React.Component {
               <div className = 'dashboardSummary'>
                 Your on-chain activity has created approximately {this.state.totalKg.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} kg of carbon emissions. With {this.state.totalNFTrees} NFTrees 
                 purchased, you have succesfully offset and sequestered {(this.state.totalOffset * 1000).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} kg of carbon from the environment. 
-                This makes your Ethereum wallet carbon {this.summaryOutput()} 
+                This makes your Ethereum wallet carbon {this.summaryOutput()} View your NFTrees on <a href="https://opensea.io/collection/nftrees-carbon-credits" target='_blank' rel='noreferrer'>OpenSea</a> and 
+                verify the carbon offsets on <a href="https://offsetra.com/" target='_blank' rel='noreferrer'>Offsetra</a>.
               </div>
             </div>
           </div>
