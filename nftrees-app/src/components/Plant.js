@@ -19,7 +19,8 @@ class Plant extends React.Component {
             totalCost: 10,
             coinMenuOpen: false,
             isApproved: false,
-            test: 0
+            test: 0, 
+            hasBalance: false
         }; 
 
         this.coins = [
@@ -73,17 +74,33 @@ class Plant extends React.Component {
     }
 
     displayButton = () => {
-        if(this.state.isApproved === false) {
-            return(
-                <button className = 'plantButton' onClick = {this.approve}>
-                    <p> APPROVE {this.coins[this.state.coinIndex]} </p> 
-                </button>
-            )
+        if(this.props.isConnected){
+            if(this.state.hasBalance) {
+                if (this.state.isApproved){
+                    return(
+                        <button className = 'plantButton' onClick = {this.buyNFTree}>
+                            <p> PLANT </p> 
+                        </button>
+                    )
+                } else  {
+                    return(
+                        <button className = 'plantButton' onClick = {this.approve}>
+                            <p> APPROVE {this.coins[this.state.coinIndex]} </p> 
+                        </button>
+                    )
+                }
+            } else {
+                return(
+                    <button className = 'plantButton' style = {{backgroundColor: 'whitesmoke'}}>
+                        <p> INSUFFICIENT BALANCE </p> 
+                    </button>
+                )
+            }
         } else {
             return(
-                <button className = 'plantButton' onClick = {this.buyNFTree}>
-                    <p> PLANT </p> 
-                </button>
+                <button className = 'plantButton' >
+                            <p> APPROVE {this.coins[this.state.coinIndex]} </p> 
+                        </button>
             )
         }
     }
@@ -173,14 +190,17 @@ class Plant extends React.Component {
 
     checkApproval = async () => {
         let allowance = await this.props.getAllowance(this.coins[this.state.coinIndex]);
+        let hasBalance = await this.props.hasBalance(this.coins[this.state.coinIndex], this.state.totalCost);
         if(allowance < this.state.totalCost * (10**18)){
             this.setState({
-                isApproved: false
+                isApproved: false,
+                hasBalance: hasBalance
             });
         }
         else {
             this.setState({
-                isApproved: true
+                isApproved: true,
+                hasBalance: hasBalance
             });
         }
     }

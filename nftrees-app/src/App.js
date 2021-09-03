@@ -65,13 +65,11 @@ class App extends React.Component {
     // add metamask event listeners
 
     window.ethereum.on('accountsChanged', (accounts) => {
-      console.log('account changed');
-      this.load();
+      window.location.reload();
     });
     
     window.ethereum.on('chainChanged', async (chainId) => {
-      console.log('chain changed');
-      this.load();
+      window.location.reload();
     });
 
   }
@@ -181,7 +179,7 @@ class App extends React.Component {
       }
     }
     else {
-      alert('connect metamask wallet');
+      //alert('connect metamask wallet');
     }
   }
 
@@ -192,7 +190,7 @@ class App extends React.Component {
       await this.state.PurchaseContract.methods.buyNFTree(numCredits, amount, coin).send({from: this.state.Currentaccount});
     }
     else {
-      alert('connect metamask wallet');
+      //alert('connect metamask wallet');
     }
   }
 
@@ -243,7 +241,29 @@ class App extends React.Component {
       return(impact);
     }
     else {
-      alert('connect metamask wallet');
+      //alert('connect metamask wallet');
+    }
+  }
+
+  hasBalance = async (coin, totalCost) => {
+    let amount = String(bigInt(totalCost * (10**18)));
+    let balance = 0;
+    if(this.state.isConnected){
+      if(coin === 'DAI') {
+        balance = await this.state.DAIContract.methods.balanceOf(this.state.Currentaccount).call();
+      }
+      else if (coin === 'USDC') {
+        balance = await this.state.USDCContract.methods.balanceOf(this.state.Currentaccount).call();
+      }
+      else if (coin === 'USDT') {
+        balance = await this.state.USDTContract.methods.balanceOf(this.state.Currentaccount).call();
+      }
+
+      return balance >= totalCost * (10**18);
+    }
+    else {
+      //alert('connect metamask wallet');
+      return(false);
     }
   }
   
@@ -262,7 +282,8 @@ class App extends React.Component {
             <Switch>
               <Route exact path = '/'>
                 <Navbar account = {this.state.Currentaccount} connectWallet = {this.connectWallet} isConnected = {this.state.isConnected} Currentnetwork = {this.state.Currentnetwork}/>
-                <Plant getAllowance = {this.getAllowance} approve = {this.approve} buyNFTree = {this.buyNFTree} insertDB = {this.insertDB} isConnected = {this.state.isConnected} NFTreeContract = {this.state.NFTreeContract} DAIContract = {this.state.DAIContract} USDCContract = {this.state.USDCContract} USDTContract = {this.state.USDTContract}/>
+                <Plant getAllowance = {this.getAllowance} approve = {this.approve} buyNFTree = {this.buyNFTree} insertDB = {this.insertDB} isConnected = {this.state.isConnected} 
+                  NFTreeContract = {this.state.NFTreeContract} DAIContract = {this.state.DAIContract} USDCContract = {this.state.USDCContract} USDTContract = {this.state.USDTContract} hasBalance = {this.hasBalance}/>
               </Route>
     
               <Route exact path = '/impact'>

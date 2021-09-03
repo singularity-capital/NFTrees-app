@@ -33,7 +33,9 @@ class Impact extends React.Component {
         isLoading: false
       })
     } else {
-      alert('connect metamask!');
+      this.setState({
+        isLoading: false
+      })
     }
   }
 
