@@ -1,2 +1,2 @@
-# NFTrees-hardhat
+# NFTrees-app
  
