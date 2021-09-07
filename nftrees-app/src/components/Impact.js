@@ -49,21 +49,21 @@ class Impact extends React.Component {
     const callableReturnMessage = firebase.functions().httpsCallable('getEtherscanKey');
 
     await callableReturnMessage().then((result) => {
-        apiKey = result.data.etherscanKey;
+      apiKey = result.data.etherscanKey;
     }).catch((error) => {
       console.log(`error: ${JSON.stringify(error)}`);
     });
 
     for (var i = 0; i < 3; i++) {
-        const emissions = await calculateAddressEmissions({
-            transactionType: typeTransaction[i],
-            address: address,
-            etherscanAPIKey: apiKey,
-        });
-        
-        gas += emissions['gasUsed'];
-        co2 += emissions['kgCO2'];
-        transactions += emissions['transactionsCount'];
+      const emissions = await calculateAddressEmissions({
+        transactionType: typeTransaction[i],
+        address: address,
+        etherscanAPIKey: apiKey,
+      });
+      
+      gas += emissions['gasUsed'];
+      co2 += emissions['kgCO2'];
+      transactions += emissions['transactionsCount'];
     }
     
     this.setState({
