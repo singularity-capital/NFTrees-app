@@ -246,7 +246,6 @@ class App extends React.Component {
   }
 
   hasBalance = async (coin, totalCost) => {
-    let amount = String(bigInt(totalCost * (10**18)));
     let balance = 0;
     if(this.state.isConnected){
       if(coin === 'DAI') {
@@ -281,14 +280,18 @@ class App extends React.Component {
           <Router>
             <Switch>
               <Route exact path = '/'>
+                <div className = 'background'>
                 <Navbar account = {this.state.Currentaccount} connectWallet = {this.connectWallet} isConnected = {this.state.isConnected} Currentnetwork = {this.state.Currentnetwork}/>
                 <Plant getAllowance = {this.getAllowance} approve = {this.approve} buyNFTree = {this.buyNFTree} insertDB = {this.insertDB} isConnected = {this.state.isConnected} 
                   NFTreeContract = {this.state.NFTreeContract} DAIContract = {this.state.DAIContract} USDCContract = {this.state.USDCContract} USDTContract = {this.state.USDTContract} hasBalance = {this.hasBalance}/>
+                </div>
               </Route>
     
               <Route exact path = '/impact'>
-                <Navbar account = {this.state.Currentaccount} connectWallet = {this.connectWallet} isConnected = {this.state.isConnected} Currentnetwork = {this.state.Currentnetwork}/>
-                <Impact account = {this.state.Currentaccount} isConnected = {this.state.isConnected} calculateImpact = {this.calculateImpact}/>
+                <div className = 'background'>
+                  <Navbar account = {this.state.Currentaccount} connectWallet = {this.connectWallet} isConnected = {this.state.isConnected} Currentnetwork = {this.state.Currentnetwork}/>
+                  <Impact account = {this.state.Currentaccount} isConnected = {this.state.isConnected} calculateImpact = {this.calculateImpact}/>
+                </div>
               </Route>
             </Switch>
           </Router>

@@ -1,11 +1,9 @@
 * {
 	box-sizing: border-box;
-	color: #6d6b6b;
 }
 
 .plantContainer {
 	height: calc(100vh - 75px);
-	background-color: #F7F8FA;
 	padding-top: 100px;
 }
 
@@ -25,13 +23,18 @@
 	margin-right: 200px;
 	border-radius: 20px;
 	border-width: 1px;
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
 	padding: 20px;
+	color: #6d6b6b;
+	font-weight: 600;
 }
 
 .plantTitle {
+	color: #6d6b6b;
 	text-align: left;
 	margin: 0;
+	font-weight: 500;
+	font-size: 20px;
 }
 
 .levelSelector {
@@ -67,8 +70,9 @@
 	color: #fff;
 	border-radius: 20px;
 	border-style: none;
-	background-color: rgba(57, 179, 82, 0.7);
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	background-color: rgba(57, 179, 82, 0.5);
+	box-shadow: rgb(0 0 0 / 8%) 0px 6px 10px;
+	font-weight: 600;
 }
 
 .selectorButton:hover {
@@ -138,6 +142,7 @@
 .currencyText {
 	margin:3px;
 	text-align:center;
+	color: #6d6b6b;
 }
 
 .currencyLogo {
@@ -161,15 +166,16 @@
 }
 
 .plantButton {
-	width: 80%;
+	width: 100%;
 	height: 60px;
 	margin-top: 20px;
 	border-radius: 20px;
 	border-width: 1px;
 	border-style: solid;
 	border-color: #cacaca;
-	background-color: rgba(57, 179, 82, 0.7);
-
+	background-color: rgba(57, 179, 82, 0.5);
+	font-weight: 600;
+	color: #40916c;
 }
 
 .plantButton:hover {
@@ -230,7 +236,7 @@
 .Dropdown-menu {
 	background-color: white;
 	border: 1px solid #ccc;
-	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+	box-shadow: rgb(0 0 0 / 8%) 0px 6px 10px;
 	box-sizing: border-box;
 	margin-top: 0px;
 	max-height: 200px;

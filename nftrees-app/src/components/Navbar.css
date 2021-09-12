@@ -1,38 +1,57 @@
 *{
-	font-size: 15px;
+	font-size: 16px;
 }
 
-.navbar{
+.navbar {
 	height: 75px;
 	display: flex;
 	flex-direction: row;
-	background-color: #f5f5f5;
 	padding-left: 30px;
 	padding-right: 30px;
 }
 
-.spacer {
-	width: 50px;
+.menu {
+	margin-top: 40px;
+	padding: 6px;
+	position: absolute;
+	left: 50%;
+	-ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+	justify-self: center;
+	background-color: white;
+	border-radius: 16px;
+	font-weight: 600;
+	display: grid;
+	grid-auto-flow: column;
+  gap: 10px;
 }
 
-.navbar-Brand{
+.spacer {
+	width: 10px;
+}
+
+.navbar-Brand {
 	height: 50px;
 	margin-top: auto;
 	margin-bottom: auto;
 }
 
-.navbar-Link{
-	color: #000;
+.navbar-Link {
 	margin-top: auto;
 	margin-bottom: auto;
 	text-decoration: none;
+	padding: 8px;
+	color: #6d6b6b;
 }
 
-.active-navbar-Link{
-	color: rgb(165, 161, 161);
+.active-navbar-Link {
+	border-radius: 14px;
+	border-width: 4px;
+	background-color: rgb(237, 238, 242);
+	color: black;
 }
 
-.address{
+.address {
 	margin-top: auto;
 	margin-bottom: auto;
 	margin-left: auto;
@@ -40,43 +59,57 @@
 
 .connectWallet {
 	margin-top: auto;
-	margin-bottom: auto;
-	margin-left: auto;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 	justify-content: center;
 	height: 40px;
 	width: 175px;
-	border-radius: 20px;
-	border-width: 1px;
-	border-style: solid;
-	border-color:rgb(199, 199, 199);
+	border-radius: 12px;
+	border-color: transparent;
 	color: #fff;
-	background-color: #74CA86;
+	background-color: rgba(57, 179, 82, 0.3);
+	font-weight: 600;
 }
 
-.connectWallet:hover{
+.connectWallet:hover {
 	cursor: pointer;
-	background-color: #74ca87c4;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #57cc99;
 	transition: 0.5s;
 
 }
 
 .connectWalletText {
-	color: #fff;
+	color: #40916c;
 	margin-left: 8px;
 }
 
 .addressText {
+	color: #40916c;
 	margin-left: 8px;
 }
 
 .addressContainer {
-	height: 40px;
+	margin-top: auto;
+	margin-bottom: auto;
 	margin-left: auto;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 	justify-content: center;
+	display: flex;
+	height: 40px;
+	width: 175px;
+	border-radius: 12px;
+	border-color: transparent;
+	color: #fff;
+	background-color: rgba(57, 179, 82, 0.3);
+	font-weight: 600;
+}
+
+sup {
+	vertical-align: super;
+	font-size: 10px;
 }

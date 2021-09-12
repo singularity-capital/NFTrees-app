@@ -79,27 +79,27 @@ class Plant extends React.Component {
 				if (this.state.isApproved){
 					return(
 						<button className = 'plantButton' onClick = {this.buyNFTree}>
-							<p> PLANT </p> 
+							<p> Plant </p> 
 						</button>
 					)
 				} else  {
 					return(
 						<button className = 'plantButton' onClick = {this.approve}>
-							<p> APPROVE {this.coins[this.state.coinIndex]} </p> 
+							<p> Approve {this.coins[this.state.coinIndex]} </p> 
 						</button>
 					)
 				}
 			} else {
 				return(
-					<button className = 'plantButton' style = {{backgroundColor: 'whitesmoke'}}>
-						<p> INSUFFICIENT BALANCE </p> 
+					<button className = 'plantButton' style = {{backgroundColor: 'whitesmoke', color: '#6d6b6b'}}>
+						<p> Insufficient Balance </p> 
 					</button>
 				)
 			}
 		} else {
 			return(
 				<button className = 'plantButton' >
-					<p> APPROVE {this.coins[this.state.coinIndex]} </p> 
+					<p> Approve {this.coins[this.state.coinIndex]} </p> 
 				</button>
 			)
 		}
@@ -129,23 +129,32 @@ class Plant extends React.Component {
 	}
 
 	displayLevel = () => {
-		return(
-			'NFTree level ' + String(this.state.level)
-		)
+		if(this.state.level === 1){
+			return('1 NFTree');
+		}
+		else if (this.state.level === 2){
+			return('10 NFTrees');
+		}
+		else if (this.state.level === 3){
+			return('100 NFTrees');
+		}
+		else{
+			return('1,000 NFTrees');
+		}
 	}
 
 	displayLevelDescription = () => {
 		if(this.state.level === 1){
-			return('1 tonne CO2 offset + 1 tree planted');
+			return('1 tonne CO₂ offset + 1 tree planted');
 		}
 		else if (this.state.level === 2){
-			return('10 tonnes CO2 offset + 10 trees planted');
+			return('10 tonnes CO₂ offset + 10 trees planted');
 		}
 		else if (this.state.level === 3){
-			return('100 tonnes CO2 offset + 100 trees planted');
+			return('100 tonnes CO₂ offset + 100 trees planted');
 		}
 		else{
-			return('1000 tonnes CO2 offset + 1000 trees planted');
+			return('1,000 tonnes CO₂ offset + 1,000 trees planted');
 		}
 	}
 
@@ -161,7 +170,7 @@ class Plant extends React.Component {
 				coin = 'USDT';
 		}
 		return(
-				'$' + String(this.state.totalCost) + ' ' + coin
+				'$' + String(this.state.totalCost).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' ' + coin
 		)
 	}
 
@@ -248,11 +257,11 @@ class Plant extends React.Component {
 				<div className = 'plantContainer'>
 					<div className = 'plantGrid'>
 						<div className = 'plantLeft'>
-							<p className = 'plantTitle'>PLANT</p>
+							<p className = 'plantTitle'>Plant</p>
 
 								<div className = 'levelSelector'>
 									<div className = 'selector'> 
-											<button className = 'selectorButton' onClick = {this.decLevel}> - </button>
+											<button className = 'selectorButton' onClick = {this.decLevel}> − </button>
 											<button className = 'selectorButton' onClick = {this.incLevel}> + </button>
 									</div>
 

@@ -1,6 +1,5 @@
 .impactContainer {
 	height: calc(100vh - 75px);
-	background-color: #F7F8FA;
 	padding-top: 100px;
 }
 
@@ -9,11 +8,12 @@
 	height: 550px;
 	margin: auto;
 	padding: 20px;
-	background-color: #fff;
+	background-color: white;
 	border-radius: 20px;
 	border-width: 1px;
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+	color: #6d6b6b;
+	font-weight: 600;
 }
 
 .dashboardHeader {
@@ -64,6 +64,7 @@
 .impactValue {
 	font-size: 20px;
 	color: #74CA86;
+	
 }
 
 .dashboardContent {
@@ -108,4 +109,11 @@
 	margin-top: 20px;
 	height: 100px;
 	line-height: 22px;
+	font-size: 15px;
+	font-weight: 400;
+}
+
+.dashboardLink {
+	color: #50b748;
+  text-decoration: none;
 }

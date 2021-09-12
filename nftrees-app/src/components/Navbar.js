@@ -13,11 +13,11 @@ function Navbar (props){
 				}
 				// if network is wrong display 'wrong network'
 				else {
-						return(<div className = 'addressContainer'><p className = 'addressText'>wrong network</p></div>)
+						return(<div className = 'addressContainer'><p className = 'addressText'>Wrong Network</p></div>)
 				}
 			}
 			else {
-				return(<button onClick = {props.connectWallet} className = 'connectWallet'> <img src = {eth} height = {20} alt = {'Could not load'}/> <p className = 'connectWalletText'>connect wallet</p> </button>)
+				return(<button onClick = {props.connectWallet} className = 'connectWallet'> <img src = {eth} height = {20} alt = {'Could not load'}/> <p className = 'connectWalletText'>Connect Wallet</p> </button>)
 			}
     }
 
@@ -25,11 +25,12 @@ function Navbar (props){
 			<nav className = 'navbar'>
 				{/* display navbar links */}
 				<a className = "navbar-Brand" href = 'https://nftrees.com/'> <img src = {logo} height = {50} alt = {'Could not load'}/> </a>
-				<div className = 'spacer'/>
-				<NavLink exact activeClassName = "active-navbar-Link" className = "navbar-Link" to = '/'> PLANT </NavLink>
-				<div className = 'spacer'/>
-				<NavLink exact activeClassName = "active-navbar-Link" className = "navbar-Link" to = '/impact'> MY IMPACT </NavLink>
-				<div className = 'spacer'/>
+				<div className = 'menu'>
+					<NavLink exact activeClassName = "active-navbar-Link" className = "navbar-Link" to = '/'>Plant</NavLink>
+					<NavLink exact activeClassName = "active-navbar-Link" className = "navbar-Link" to = '/impact'>Dashboard</NavLink>
+					<a exact activeClassName = "active-navbar-Link" className = "navbar-Link" href = 'https://offsetra.com/' rel='noreferrer' target = '_blank'>Portfolio<sup>↗</sup></a>
+					<a exact activeClassName = "active-navbar-Link" className = "navbar-Link" href = 'https://opensea.io/collection/nftrees-carbon-credits' rel='noreferrer' target = '_blank'>OpenSea<sup>↗</sup></a>
+				</div>
 
 				{/* display user address */}
 				<div className = "address my-auto"> <SubstringAddress/> </div>

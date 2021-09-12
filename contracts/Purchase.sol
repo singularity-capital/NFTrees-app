@@ -28,7 +28,6 @@ contract Purchase is Ownable{
         levels[10] = true;
         levels[100] = true;
         levels[1000] = true;
-        levels[10000] = true;
     }
     
     function setNFTreeContract(address _nftreeContract) external{
