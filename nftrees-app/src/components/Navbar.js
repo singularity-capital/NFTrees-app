@@ -27,7 +27,7 @@ function Navbar (props){
 				<a className = "navbar-Brand" href = 'https://nftrees.com/'> <img src = {logo} height = {50} alt = {'Could not load'}/> </a>
 				<div className = 'menu'>
 					<NavLink exact activeClassName = "active-navbar-Link" className = "navbar-Link" to = '/'>Plant</NavLink>
-					<NavLink exact activeClassName = "active-navbar-Link" className = "navbar-Link" to = '/impact'>Dashboard</NavLink>
+					<NavLink exact activeClassName = "active-navbar-Link" className = "navbar-Link" to = '/dashboard'>Dashboard</NavLink>
 					<a exact activeClassName = "active-navbar-Link" className = "navbar-Link" href = 'https://offsetra.com/' rel='noreferrer' target = '_blank'>Portfolio<sup>↗</sup></a>
 					<a exact activeClassName = "active-navbar-Link" className = "navbar-Link" href = 'https://opensea.io/collection/nftrees-carbon-credits' rel='noreferrer' target = '_blank'>OpenSea<sup>↗</sup></a>
 				</div>

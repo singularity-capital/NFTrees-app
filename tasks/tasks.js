@@ -1,6 +1,7 @@
 require("@nomiclabs/hardhat-web3");
 require('dotenv').config();
 const fs = require('fs');
+
 const purchaseABI = require("../nftrees-app/src/artifacts/contracts/Purchase.sol/Purchase.json").abi;
 const nftreeABI = require("../nftrees-app/src/artifacts/contracts/NFTree.sol/NFTree.json").abi;
 const daiABI = require("../nftrees-app/src/artifacts/contracts/DAI.sol/DAI.json").abi;

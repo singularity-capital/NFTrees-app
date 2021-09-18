@@ -1,16 +1,16 @@
 // base imports
 import React from 'react';
-import './Impact.css';
+import './Dashboard.css';
 import { calculateAddressEmissions } from "ethereum-emissions-calculator";
 import CountUp from 'react-countup';
-import firebase from '../firebase';
+import firebase from '../firebase.js';
+// eslint-disable-next-line
 import functions from "firebase/functions";
 
-class Impact extends React.Component {
+class Dashboard extends React.Component {
 
   constructor(props) {
     super(props);
-    // Don't call this.setState() here!
     this.state = {
       totalGas: 0,
       totalKg: 0,
@@ -163,4 +163,4 @@ class Impact extends React.Component {
   }
 }
 
-export default Impact;
+export default Dashboard;

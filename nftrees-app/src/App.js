@@ -10,7 +10,8 @@ import {
   Route,
 } from "react-router-dom";
 import bigInt from "big-integer";
-import firebase from './firebase';
+import firebase from './firebase.js';
+// eslint-disable-next-line
 import database from 'firebase/database';
 
 // import contract abis
@@ -23,7 +24,7 @@ import USDTABI from './artifacts/contracts/USDT.sol/USDT.json';
 // import components
 import Navbar from './components/Navbar';
 import Plant from './components/Plant';
-import Impact from './components/Impact';
+import Dashboard from './components/Dashboard';
 
 class App extends React.Component {
 
@@ -54,7 +55,6 @@ class App extends React.Component {
     this.setState = this.setState.bind(this);
   }
 
-
   componentDidMount = async () =>  {
     await this.load();
  
@@ -77,6 +77,7 @@ class App extends React.Component {
   load = async () => {
     await this.loadWeb3();
   }
+
 
   /* ethereum initialization functions */
 
@@ -194,23 +195,22 @@ class App extends React.Component {
     }
   }
 
-  insertDB = (numCredits, totalCost, coin) => {
-    var today = new Date();
-    var dd = String(today.getDate()).padStart(2, '0');
-    var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0
-    var yyyy = today.getFullYear();
-    today = mm + '/' + dd + '/' + yyyy;
+  insertDB = (transactionHash, numCredits, totalCost, coin) => {
+      var today = new Date();
+      var dd = String(today.getDate()).padStart(2, '0');
+      var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0
+      var yyyy = today.getFullYear();
+      today = mm + '/' + dd + '/' + yyyy;
 
-    var database = firebase.database().ref('transactions');
-    database.push().set({
-        date: today,
-        wallet: this.state.Currentaccount,
-        amount: totalCost,
-        coin: coin,
-        carbon_credits: numCredits,
-        trees_planted: numCredits
-    });
-    console.log("DB INSERT", coin);
+      var database = firebase.database().ref('transactions/' + transactionHash);
+      database.set({
+          date: today,
+          wallet: this.state.Currentaccount,
+          amount: totalCost,
+          coin: coin,
+          carbon_credits: numCredits,
+          trees_planted: numCredits
+      });
   }
 
   calculateImpact = async () => {  
@@ -283,14 +283,15 @@ class App extends React.Component {
                 <div className = 'background'>
                 <Navbar account = {this.state.Currentaccount} connectWallet = {this.connectWallet} isConnected = {this.state.isConnected} Currentnetwork = {this.state.Currentnetwork}/>
                 <Plant getAllowance = {this.getAllowance} approve = {this.approve} buyNFTree = {this.buyNFTree} insertDB = {this.insertDB} isConnected = {this.state.isConnected} 
-                  NFTreeContract = {this.state.NFTreeContract} DAIContract = {this.state.DAIContract} USDCContract = {this.state.USDCContract} USDTContract = {this.state.USDTContract} hasBalance = {this.hasBalance}/>
+                  NFTreeContract = {this.state.NFTreeContract} DAIContract = {this.state.DAIContract} USDCContract = {this.state.USDCContract} USDTContract = {this.state.USDTContract}
+                  hasBalance = {this.hasBalance}/>
                 </div>
               </Route>
     
-              <Route exact path = '/impact'>
+              <Route exact path = '/dashboard'>
                 <div className = 'background'>
                   <Navbar account = {this.state.Currentaccount} connectWallet = {this.connectWallet} isConnected = {this.state.isConnected} Currentnetwork = {this.state.Currentnetwork}/>
-                  <Impact account = {this.state.Currentaccount} isConnected = {this.state.isConnected} calculateImpact = {this.calculateImpact}/>
+                  <Dashboard account = {this.state.Currentaccount} isConnected = {this.state.isConnected} calculateImpact = {this.calculateImpact}/>
                 </div>
               </Route>
             </Switch>

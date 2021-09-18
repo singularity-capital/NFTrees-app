@@ -62,15 +62,14 @@ class Plant extends React.Component {
 		})
 		.on('error', console.error);
 
+		
 		this.props.NFTreeContract.events.Transfer()
 		.on('data', (event) => {
 			let numCredits = this.state.totalCost / 10;
-			console.log('event', this.coins[this.state.coinIndex])
-			this.props.insertDB(numCredits, this.state.totalCost, this.coins[this.state.coinIndex]);
+			this.props.insertDB(event.transactionHash, numCredits, this.state.totalCost, this.coins[this.state.coinIndex]);
 		})
 		.on('error', console.error);
-
-
+		
 	}
 
 	displayButton = () => {
@@ -99,7 +98,7 @@ class Plant extends React.Component {
 		} else {
 			return(
 				<button className = 'plantButton' >
-					<p> Approve {this.coins[this.state.coinIndex]} </p> 
+					<p> Wrong Network </p> 
 				</button>
 			)
 		}
@@ -258,7 +257,6 @@ class Plant extends React.Component {
 					<div className = 'plantGrid'>
 						<div className = 'plantLeft'>
 							<p className = 'plantTitle'>Plant</p>
-
 								<div className = 'levelSelector'>
 									<div className = 'selector'> 
 											<button className = 'selectorButton' onClick = {this.decLevel}> − </button>
