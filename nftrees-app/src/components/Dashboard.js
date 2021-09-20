@@ -76,12 +76,12 @@ class Dashboard extends React.Component {
   displayCarbonFootprint = () => {
     if(this.state.totalKg - this.state.totalOffset * 1000 <= 0){
       return(
-        <div><CountUp className = 'carbonFootprintValue' end = {this.state.totalKg - this.state.totalOffset * 1000} duration = {1} separator ={','} style = {{color: '#74CA86'}}/> kg CO<sub>2</sub></div>
+        <div className = 'carbonFootprintUnit'><CountUp className = 'carbonFootprintValue' end = {this.state.totalKg - this.state.totalOffset * 1000} duration = {1} separator ={','} style = {{color: '#74CA86'}}/> kg CO<sub>2</sub></div>
       )
     }
     else{
       return(
-        <div><CountUp className = 'carbonFootprintValue' end = {this.state.totalKg - this.state.totalOffset * 1000} duration = {1} separator ={','}/> kg CO<sub>2</sub></div>
+        <div className = 'carbonFootprintUnit'><CountUp className = 'carbonFootprintValue' end = {this.state.totalKg - this.state.totalOffset * 1000} duration = {1} separator ={','}/> kg CO<sub>2</sub></div>
       )
     }
   }

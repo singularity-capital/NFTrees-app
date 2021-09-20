@@ -1,7 +1,7 @@
 // base imports
 import React from 'react';
 import './Plant.css';
-import card from '../assets/card.png';
+import card from '../assets/coin_nft.jpg';
 import Dropdown from 'react-dropdown';
 import dai from '../assets/dai_logo.png';
 import usdc from '../assets/usdc_logo.png';
@@ -107,22 +107,22 @@ class Plant extends React.Component {
 	displayNFTree = () => {
 		if(this.state.level === 1){
 			return(
-					<img src = {card} height = {560} width = {400} alt = {'Could not load'}/>
+					<img src = {card} height = {400} width = {400} alt = {'Could not load'}/>
 			)
 		} 
 		else if(this.state.level === 2){
 			return(
-				<img src = {card} height = {560} width = {400} alt = {'Could not load'}/>
+				<img src = {card} height = {400} width = {400} alt = {'Could not load'}/>
 			)
 		}
 		else if(this.state.level === 3){
 			return(
-				<img src = {card} height = {560} width = {400} alt = {'Could not load'}/>
+				<img src = {card} height = {400} width = {400} alt = {'Could not load'}/>
 			)
 		}
 		else{
 			return(
-				<img src = {card} height = {560} width = {400} alt = {'Could not load'}/>
+				<img src = {card} height = {400} width = {400} alt = {'Could not load'}/>
 			)
 		}
 	}

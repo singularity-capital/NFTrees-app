@@ -3,7 +3,7 @@
 }
 
 .navbar {
-	height: 75px;
+	height: 100px;
 	display: flex;
 	flex-direction: row;
 	padding-left: 30px;
