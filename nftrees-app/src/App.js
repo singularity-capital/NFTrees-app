@@ -16,7 +16,7 @@ import database from 'firebase/database';
 
 // import contract abis
 import NFTreeABI from './artifacts/contracts/NFTree.sol/NFTree.json';
-import PurchaseABI from './artifacts/contracts/Purchase.sol/Purchase.json';
+import NFTreeFactoryABI from './artifacts/contracts/NFTreeFactory.sol/NFTreeFactory.json';
 import DAIABI from './artifacts/contracts/DAI.sol/DAI.json';
 import USDCABI from './artifacts/contracts/USDC.sol/USDC.json';
 import USDTABI from './artifacts/contracts/USDT.sol/USDT.json';
@@ -36,7 +36,7 @@ class App extends React.Component {
         Currentnetwork: undefined,
         isConnected: false,
         NFTreeContract: undefined,
-        PurchaseContract: undefined,
+        NFTreeFactoryContract: undefined,
         DAIContract: undefined,
         USDCContract: undefined,
         USDTContract: undefined,
@@ -45,7 +45,7 @@ class App extends React.Component {
 
     this.contractAddresses = {
       'NFTree' : '0x8a5cda6bd214A69DA67a774b071f55750A8cda7e',
-      'Purchase' : '0xf47EaA986ba08A7d0cE634B00E4d47BB9eC70968',
+      'NFTreeFactory' : '0xf47EaA986ba08A7d0cE634B00E4d47BB9eC70968',
       'DAI' : '0x8f55de35229e5eC7759f396dC58E12d636Ac1e8c',
       'USDC' : '0x802B0f664b9c505eA0dbF633F8975C4B680A6354',
       'USDT' : '0xf8Cb6F45D110b9d54cf0007C5bD0A4FE21bbCb75'
@@ -139,7 +139,7 @@ class App extends React.Component {
     if(window.ethereum){
       this.setState({
         NFTreeContract: await new window.web3.eth.Contract(NFTreeABI.abi, this.contractAddresses['NFTree']),
-        PurchaseContract: await new window.web3.eth.Contract(PurchaseABI.abi, this.contractAddresses['Purchase']),
+        NFTreeFactoryContract: await new window.web3.eth.Contract(NFTreeFactoryABI.abi, this.contractAddresses['NFTreeFactory']),
         DAIContract: await new window.web3.eth.Contract(DAIABI.abi, this.contractAddresses['DAI']),
         USDCContract: await new window.web3.eth.Contract(USDCABI.abi, this.contractAddresses['USDC']),
         USDTContract: await new window.web3.eth.Contract(USDTABI.abi, this.contractAddresses['USDT']),
@@ -151,13 +151,13 @@ class App extends React.Component {
     if(this.state.isConnected){  
       let allowance;
       if(coin === 'DAI') {
-        allowance = await this.state.DAIContract.methods.allowance(this.state.Currentaccount, this.contractAddresses['Purchase']).call();
+        allowance = await this.state.DAIContract.methods.allowance(this.state.Currentaccount, this.contractAddresses['NFTreeFactory']).call();
       }
       else if (coin === 'USDC') {
-        allowance = await this.state.USDCContract.methods.allowance(this.state.Currentaccount, this.contractAddresses['Purchase']).call();
+        allowance = await this.state.USDCContract.methods.allowance(this.state.Currentaccount, this.contractAddresses['NFTreeFactory']).call();
       }
       else if (coin === 'USDT') {
-        allowance = await this.state.USDTContract.methods.allowance(this.state.Currentaccount, this.contractAddresses['Purchase']).call();
+        allowance = await this.state.USDTContract.methods.allowance(this.state.Currentaccount, this.contractAddresses['NFTreeFactory']).call();
       } 
       return allowance;
     }
@@ -170,13 +170,13 @@ class App extends React.Component {
     let amount = String(bigInt(totalCost * (10**18)));
     if(this.state.isConnected){
       if(coin === 'DAI') {
-        await this.state.DAIContract.methods.approve(this.contractAddresses['Purchase'], amount).send({from: this.state.Currentaccount});
+        await this.state.DAIContract.methods.approve(this.contractAddresses['NFTreeFactory'], amount).send({from: this.state.Currentaccount});
       }
       else if (coin === 'USDC') {
-        await this.state.USDCContract.methods.approve(this.contractAddresses['Purchase'], amount).send({from: this.state.Currentaccount});
+        await this.state.USDCContract.methods.approve(this.contractAddresses['NFTreeFactory'], amount).send({from: this.state.Currentaccount});
       }
       else if (coin === 'USDT') {
-        await this.state.USDTContract.methods.approve(this.contractAddresses['Purchase'], amount).send({from: this.state.Currentaccount});
+        await this.state.USDTContract.methods.approve(this.contractAddresses['NFTreeFactory'], amount).send({from: this.state.Currentaccount});
       }
     }
     else {
@@ -184,11 +184,11 @@ class App extends React.Component {
     }
   }
 
-  buyNFTree = async (numCredits, totalCost, coin) => {   
+  mintNFTree = async (numCredits, totalCost, coin) => {   
     let amount = String(bigInt(totalCost * (10**18))); 
     if(this.state.isConnected){
       console.log(numCredits, amount, coin, this.state.Currentaccount)
-      await this.state.PurchaseContract.methods.buyNFTree(numCredits, amount, coin).send({from: this.state.Currentaccount});
+      await this.state.NFTreeFactoryContract.methods.mintNFTree(numCredits, amount, coin).send({from: this.state.Currentaccount});
     }
     else {
       //alert('connect metamask wallet');
@@ -282,7 +282,7 @@ class App extends React.Component {
               <Route exact path = '/'>
                 <div className = 'background'>
                 <Navbar account = {this.state.Currentaccount} connectWallet = {this.connectWallet} isConnected = {this.state.isConnected} Currentnetwork = {this.state.Currentnetwork}/>
-                <Plant getAllowance = {this.getAllowance} approve = {this.approve} buyNFTree = {this.buyNFTree} insertDB = {this.insertDB} isConnected = {this.state.isConnected} 
+                <Plant getAllowance = {this.getAllowance} approve = {this.approve} mintNFTree = {this.mintNFTree} insertDB = {this.insertDB} isConnected = {this.state.isConnected} 
                   NFTreeContract = {this.state.NFTreeContract} DAIContract = {this.state.DAIContract} USDCContract = {this.state.USDCContract} USDTContract = {this.state.USDTContract}
                   hasBalance = {this.hasBalance}/>
                 </div>

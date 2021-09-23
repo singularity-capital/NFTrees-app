@@ -77,7 +77,7 @@ class Plant extends React.Component {
 			if(this.state.hasBalance) {
 				if (this.state.isApproved){
 					return(
-						<button className = 'plantButton' onClick = {this.buyNFTree}>
+						<button className = 'plantButton' onClick = {this.mintNFTree}>
 							<p> Plant </p> 
 						</button>
 					)
@@ -221,10 +221,10 @@ class Plant extends React.Component {
 		}
 	}
 
-	buyNFTree = async () => {
+	mintNFTree = async () => {
 		let numCredits = this.state.totalCost / 10;
 		if(this.props.isConnected){
-			this.props.buyNFTree(numCredits, this.state.totalCost, this.coins[this.state.coinIndex]);
+			this.props.mintNFTree(numCredits, this.state.totalCost, this.coins[this.state.coinIndex]);
 		} else {
 			alert("connect metamask!");
 		}
