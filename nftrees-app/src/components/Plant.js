@@ -1,7 +1,10 @@
 // base imports
 import React from 'react';
 import './Plant.css';
-import card from '../assets/coin_nft.jpg';
+import coin1 from '../assets/1.gif';
+import coin10 from '../assets/10.gif';
+import coin100 from '../assets/100.gif';
+import coin1000 from '../assets/1000.gif';
 import Dropdown from 'react-dropdown';
 import dai from '../assets/dai_logo.png';
 import usdc from '../assets/usdc_logo.png';
@@ -107,22 +110,22 @@ class Plant extends React.Component {
 	displayNFTree = () => {
 		if(this.state.level === 1){
 			return(
-					<img src = {card} height = {400} width = {400} alt = {'Could not load'}/>
+					<img src = {coin1} height = {400} width = {400} alt = {'Could not load'}/>
 			)
 		} 
 		else if(this.state.level === 2){
 			return(
-				<img src = {card} height = {400} width = {400} alt = {'Could not load'}/>
+				<img src = {coin10} height = {400} width = {400} alt = {'Could not load'}/>
 			)
 		}
 		else if(this.state.level === 3){
 			return(
-				<img src = {card} height = {400} width = {400} alt = {'Could not load'}/>
+				<img src = {coin100} height = {400} width = {400} alt = {'Could not load'}/>
 			)
 		}
 		else{
 			return(
-				<img src = {card} height = {400} width = {400} alt = {'Could not load'}/>
+				<img src = {coin1000} height = {400} width = {400} alt = {'Could not load'}/>
 			)
 		}
 	}
@@ -256,7 +259,7 @@ class Plant extends React.Component {
 				<div className = 'plantContainer'>
 					<div className = 'plantGrid'>
 						<div className = 'plantLeft'>
-							<p className = 'plantTitle'>Plant</p>
+							<div className = 'plantTitle'>Plant</div>
 								<div className = 'levelSelector'>
 									<div className = 'selector'> 
 											<button className = 'selectorButton' onClick = {this.decLevel}> − </button>

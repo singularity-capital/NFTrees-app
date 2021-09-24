@@ -1,5 +1,10 @@
 .App {
   text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  height: auto;
+  width: 100%;
+  overflow: hidden;
+  overflow-y: auto;
 }
 
 .App-logo {
@@ -8,10 +13,9 @@
 }
 
 .background {
-  /*background: rgb(201,255,208);
-  background: linear-gradient(180deg, rgba(201,255,208,0.6954131994594712) 33%, rgba(255,255,255,1) 100%);
-  */
   background-image: url('./assets/test.jpg');
+  background-position: center;
+  background-size: cover;
 }
 
 @media (prefers-reduced-motion: no-preference) {

@@ -1,17 +1,35 @@
-*{
-	font-size: 16px;
-}
-
 .navbar {
 	height: 100px;
 	display: flex;
 	flex-direction: row;
-	padding-left: 30px;
-	padding-right: 30px;
+}
+
+.logo {
+  text-decoration: none;
+  height: 50px;
+  padding-left: 50px;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: row;
+}
+
+.landingTitle {
+  font-size: 32px;
+  font-weight: bold;
+  color: #16242d;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 20px;
+  display: flex;
+  flex-direction: row;
+}
+
+.split {
+  width: 3px;
 }
 
 .menu {
-	margin-top: 40px;
+	margin-top: 56px;
 	padding: 6px;
 	position: absolute;
 	left: 50%;
@@ -19,11 +37,12 @@
   transform: translate(-50%, -50%);
 	justify-self: center;
 	background-color: white;
-	border-radius: 16px;
+	border-radius: 10px;
+	font-size: 18px;
 	font-weight: 600;
 	display: grid;
 	grid-auto-flow: column;
-  gap: 10px;
+  gap: 20px;
 }
 
 .spacer {
@@ -32,15 +51,14 @@
 
 .navbar-Brand {
 	height: 50px;
-	margin-top: auto;
-	margin-bottom: auto;
+	margin-top: 30px;
 }
 
 .navbar-Link {
 	margin-top: auto;
 	margin-bottom: auto;
 	text-decoration: none;
-	padding: 8px;
+	padding: 12px;
 	color: #6d6b6b;
 }
 
@@ -48,27 +66,25 @@
 	border-radius: 14px;
 	border-width: 4px;
 	background-color: rgb(237, 238, 242);
-	color: black;
+	color: #16242d;
 }
 
 .address {
-	margin-top: auto;
-	margin-bottom: auto;
 	margin-left: auto;
 }
 
 .connectWallet {
-	margin-top: auto;
+	margin-top: 32px;
+	margin-right: 50px;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 	justify-content: center;
-	height: 40px;
-	width: 175px;
-	border-radius: 12px;
+	height: 44px;
+	width: 170px;
+	border-radius: 10px;
 	border-color: transparent;
-	color: #fff;
-	background-color: rgba(57, 179, 82, 0.3);
+	background-color: #52b788;
 	font-weight: 600;
 }
 
@@ -82,30 +98,31 @@
 }
 
 .connectWalletText {
-	color: #40916c;
+	font-size: 18px;
+	font-family: Montserrat;
+  color: #16242d;
 	margin-left: 8px;
 }
 
 .addressText {
-	color: #40916c;
+	font-size: 16px;
+	font-family: Montserrat;
+  color: #16242d;
 	margin-left: 8px;
 }
 
 .addressContainer {
-	margin-top: auto;
-	margin-bottom: auto;
-	margin-left: auto;
+	margin-top: 32px;
+	margin-right: 50px;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 	justify-content: center;
-	display: flex;
-	height: 40px;
-	width: 175px;
-	border-radius: 12px;
+	height: 44px;
+	width: 170px;
+	border-radius: 10px;
 	border-color: transparent;
-	color: #fff;
-	background-color: rgba(57, 179, 82, 0.3);
+	background-color: #52b788;
 	font-weight: 600;
 }
 
