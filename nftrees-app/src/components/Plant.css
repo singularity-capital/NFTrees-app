@@ -1,5 +1,6 @@
 * {
 	box-sizing: border-box;
+	font-family: 'Montserrat';
 }
 
 .plantContainer {
@@ -15,9 +16,9 @@
 }
 
 .plantLeft {
-	height: 400px;
+	height: 350px;
 	width: 500px;
-	background-color: #fff;
+	background-color: rgba(255, 255, 255, 0.8);
 	margin-top: auto;
 	margin-bottom: auto;
 	margin-right: 200px;
@@ -32,8 +33,7 @@
 .plantTitle {
 	color: #6d6b6b;
 	text-align: left;
-	margin-top: 4px;
-	font-weight: 500;
+	font-weight: 600;
 	font-size: 22px;
 }
 
@@ -42,7 +42,7 @@
 	flex-direction: row;
 	width: 100%;
 	height: 70px;
-	margin-top: 30px;
+	margin-top: 16px;
 	border-top-left-radius: 20px;
 	border-top-right-radius: 20px;
 	border-color: #cacaca;
@@ -67,10 +67,10 @@
 	width: 50px;
 	height: 30px;
 	font-size: 20px;
-	color: #fff;
+	color: white;
 	border-radius: 20px;
 	border-style: none;
-	background-color: rgba(57, 179, 82, 0.5);
+	background-color: #52B788;
 	box-shadow: rgb(0 0 0 / 8%) 0px 6px 10px;
 	font-weight: 600;
 }
@@ -105,7 +105,7 @@
 	border-right-width: 1px;
 	border-style: solid;
 	border-top-style: none;
-	background-color: #f7f8fa;
+	background-color: rgba(255, 255, 255, 0.6);
 }
 
 .description {
@@ -117,12 +117,12 @@
 	flex-direction: row;
 	width: 100%;
 	height: 70px;
-	margin-top: 30px;
+	margin-top: 18px;
 	border-radius: 20px;
 	border-color: #cacaca;
 	border-width: 1px;
 	border-style: solid;
-	background-color: #f7f8fa;
+	background-color: rgba(255, 255, 255, 0.6);
 
 }
 
@@ -136,7 +136,7 @@
 	height: fit-content;
 	display: flex;
 	flex-direction: row;
-	justify-content:flex-start;
+	justify-content: flex-start;
 }
 
 .currencyText {
@@ -168,14 +168,15 @@
 .plantButton {
 	width: 100%;
 	height: 60px;
-	margin-top: 30px;
+	margin-top: 18px;
 	border-radius: 20px;
 	border-width: 1px;
 	border-style: solid;
 	border-color: #cacaca;
-	background-color: rgba(57, 179, 82, 0.5);
+	background-color: #52B788;
+	font-size: 18px;
 	font-weight: 600;
-	color: #40916c;
+	color: #16242d;
 }
 
 .plantButton:hover {
@@ -200,7 +201,7 @@ img {
 }
 
 .Dropdown-control {
-	width: 120px;
+	width: 128px;
 	position: relative;
 	overflow: hidden;
 	background-color: white;
@@ -229,7 +230,6 @@ img {
 	position: absolute;
 	right: 10px;
 	top: 18px;
-	width: 0
 }
 
 .is-open .Dropdown-arrow {
@@ -247,7 +247,7 @@ img {
 	overflow-y: auto;
 	position: absolute;
 	top: 100%;
-	width: 100%;
+	width: 128px;
 	z-index: 1000;
 	-webkit-overflow-scrolling: touch;
 	border-radius: 20px;

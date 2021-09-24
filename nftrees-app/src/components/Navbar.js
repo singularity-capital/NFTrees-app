@@ -9,7 +9,7 @@ function Navbar (props){
     function SubstringAddress () {
 			if(props.account){
 				if (props.Currentnetwork === 4){
-						return(<div className = 'addressContainer'><img src = {eth} height = {20} alt = {'Could not load'}/> <p className = 'addressText'>{props.account.substring(0, 5) + "..." + props.account.substring(36, 42)}</p></div>)
+						return(<div className = 'addressContainer'><div className = 'addressText'>{props.account.substring(0, 5) + "..." + props.account.substring(36, 42)}</div></div>)
 				}
 				// if network is wrong display 'wrong network'
 				else {
@@ -17,14 +17,15 @@ function Navbar (props){
 				}
 			}
 			else {
-				return(<button onClick = {props.connectWallet} className = 'connectWallet'> <img src = {eth} height = {20} alt = {'Could not load'}/> <p className = 'connectWalletText'>Connect Wallet</p> </button>)
+				return(<button onClick = {props.connectWallet} className = 'connectWallet'> <div className = 'connectWalletText'>Connect Wallet</div> </button>)
 			}
     }
 
     return(
 			<nav className = 'navbar'>
 				{/* display navbar links */}
-				<a className = "navbar-Brand" href = 'https://nftrees.com/'> <img src = {logo} height = {50} alt = {'Could not load'}/> </a>
+				<NavLink exact className = 'logo' to = '/'> <img className = 'logoImage' src = {logo} alt = 'logo' height = {50}/> <div className = 'landingTitle'>NF<div className = 'split'/>Trees</div></NavLink>
+			
 				<div className = 'menu'>
 					<NavLink exact activeClassName = "active-navbar-Link" className = "navbar-Link" to = '/'>Plant</NavLink>
 					<NavLink exact activeClassName = "active-navbar-Link" className = "navbar-Link" to = '/dashboard'>Dashboard</NavLink>

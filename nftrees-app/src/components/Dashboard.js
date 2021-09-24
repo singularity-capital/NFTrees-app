@@ -91,9 +91,9 @@ class Dashboard extends React.Component {
     if (delta < 0) {
       return "negative!";
     } else if (delta > 0) {
-      return "positive. Plant more NFTrees to go carbon negative!";
+      return "positive. Plant NFTrees to go carbon negative!";
     } else {
-      return "neutral. Plant more NFTrees to go carbon negative!";
+      return "neutral. Plant NFTrees to go carbon negative!";
     }
   }
   
