@@ -1,10 +1,10 @@
 // base imports
 import React from 'react';
 import './Plant.css';
-import coin1 from '../assets/1.gif';
-import coin10 from '../assets/10.gif';
-import coin100 from '../assets/100.gif';
-import coin1000 from '../assets/1000.gif';
+import coin1 from '../assets/1-front.gif';
+import coin10 from '../assets/10-front.gif';
+import coin100 from '../assets/100-front.gif';
+import coin1000 from '../assets/1000-front.gif';
 import Dropdown from 'react-dropdown';
 import dai from '../assets/dai_logo.png';
 import usdc from '../assets/usdc_logo.png';
