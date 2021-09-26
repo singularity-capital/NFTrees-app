@@ -1,18 +1,47 @@
 {
-  "name": "hardhat-project",
-  "devDependencies": {
-    "@nomiclabs/hardhat-ethers": "^2.0.2",
-    "@nomiclabs/hardhat-etherscan": "^2.1.6",
-    "@nomiclabs/hardhat-waffle": "^2.0.1",
-    "@nomiclabs/hardhat-web3": "^2.0.0",
-    "chai": "^4.3.4",
-    "ethereum-waffle": "^3.4.0",
-    "ethers": "^5.4.6",
-    "hardhat": "^2.6.4",
-    "web3": "^1.5.2"
-  },
+  "name": "nftrees-app",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
-    "@openzeppelin/contracts": "^4.3.1",
-    "dotenv": "^10.0.0"
+    "@openzeppelin/contracts": "^4.3.2",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^11.2.7",
+    "@testing-library/user-event": "^12.8.3",
+    "big-integer": "^1.6.49",
+    "ethereum-emissions-calculator": "^2.1.0",
+    "firebase": "^8.10.0",
+    "react": "^17.0.2",
+    "react-countup": "^5.2.0",
+    "react-dom": "^17.0.2",
+    "react-dropdown": "^1.9.2",
+    "react-router-dom": "^5.3.0",
+    "react-router-hash-link": "^2.4.3",
+    "react-scripts": "4.0.3",
+    "web-vitals": "^1.1.2",
+    "web3": "^1.5.3"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

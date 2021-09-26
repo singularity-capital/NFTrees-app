@@ -1,0 +1,177 @@
+[debug] [2021-08-22T02:49:50.901Z] ----------------------------------------------------------------------
+[debug] [2021-08-22T02:49:50.903Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Nicolas\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2021-08-22T02:49:50.903Z] CLI Version:   9.16.5
+[debug] [2021-08-22T02:49:50.903Z] Platform:      win32
+[debug] [2021-08-22T02:49:50.903Z] Node Version:  v10.16.3
+[debug] [2021-08-22T02:49:50.904Z] Time:          Sat Aug 21 2021 19:49:50 GMT-0700 (Pacific Daylight Time)
+[debug] [2021-08-22T02:49:50.904Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2021-08-22T02:49:50.908Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2021-08-22T02:49:50.986Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-08-22T02:49:50.986Z] > authorizing via signed-in user (nicolas@nftrees.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\Nicolas\Desktop\singularity\NFTrees-hardhat\nftrees-app
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
+[debug] [2021-08-22T02:49:51.240Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2021-08-22T02:49:51.240Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[info] i  .firebaserc already has a default project, using nftrees-firebase. 
+[debug] [2021-08-22T02:50:33.751Z] > refreshing access token with scopes: []
+[debug] [2021-08-22T02:50:33.751Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-08-22T02:50:33.938Z] <<< HTTP RESPONSE 200 {"pragma":"no-cache","cache-control":"no-cache, no-store, max-age=0, must-revalidate","date":"Sun, 22 Aug 2021 02:50:33 GMT","expires":"Mon, 01 Jan 1990 00:00:00 GMT","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-08-22T02:50:33.952Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/nftrees-firebase [none]
+[debug] [2021-08-22T02:50:34.205Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/nftrees-firebase 200
+[debug] [2021-08-22T02:50:34.205Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/nftrees-firebase {"projectId":"nftrees-firebase","projectNumber":"891218775922","displayName":"NFTrees","name":"projects/nftrees-firebase","resources":{"hostingSite":"nftrees-firebase","realtimeDatabaseInstance":"nftrees-firebase-default-rtdb","storageBucket":"nftrees-firebase.appspot.com","locationId":"us-west2"},"state":"ACTIVE"}
+[info] 
+=== Database Setup
+[info] i  database: ensuring required API firebasedatabase.googleapis.com is enabled... 
+[debug] [2021-08-22T02:50:34.207Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2021-08-22T02:50:34.207Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-08-22T02:50:34.366Z] <<< HTTP RESPONSE 200 {"expires":"Mon, 01 Jan 1990 00:00:00 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","pragma":"no-cache","date":"Sun, 22 Aug 2021 02:50:33 GMT","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-08-22T02:50:34.381Z] >>> HTTP REQUEST GET https://serviceusage.googleapis.com/v1/projects/nftrees-firebase/services/firebasedatabase.googleapis.com  
+ 
+[debug] [2021-08-22T02:50:34.895Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sun, 22 Aug 2021 02:50:34 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] +  database: required API firebasedatabase.googleapis.com is enabled 
+[info] 
+[debug] [2021-08-22T02:50:34.897Z] > refreshing access token with scopes: []
+[debug] [2021-08-22T02:50:34.897Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-08-22T02:50:35.052Z] <<< HTTP RESPONSE 200 {"expires":"Mon, 01 Jan 1990 00:00:00 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","date":"Sun, 22 Aug 2021 02:50:34 GMT","pragma":"no-cache","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-08-22T02:50:35.072Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/nftrees-firebase [none]
+[debug] [2021-08-22T02:50:35.242Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/nftrees-firebase 200
+[debug] [2021-08-22T02:50:35.242Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/nftrees-firebase {"projectId":"nftrees-firebase","projectNumber":"891218775922","displayName":"NFTrees","name":"projects/nftrees-firebase","resources":{"hostingSite":"nftrees-firebase","realtimeDatabaseInstance":"nftrees-firebase-default-rtdb","storageBucket":"nftrees-firebase.appspot.com","locationId":"us-west2"},"state":"ACTIVE"}
+[debug] [2021-08-22T02:50:35.243Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2021-08-22T02:50:35.243Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-08-22T02:50:35.381Z] <<< HTTP RESPONSE 200 {"pragma":"no-cache","expires":"Mon, 01 Jan 1990 00:00:00 GMT","date":"Sun, 22 Aug 2021 02:50:34 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-08-22T02:50:35.393Z] >>> HTTP REQUEST GET https://firebasedatabase.googleapis.com/v1beta/projects/nftrees-firebase/locations/-/instances/nftrees-firebase-default-rtdb  
+ 
+[debug] [2021-08-22T02:50:35.955Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sun, 22 Aug 2021 02:50:35 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] 
+[info] Firebase Realtime Database Security Rules allow you to define how your data should be
+[info] structured and when your data can be read from and written to.
+[info] 
+[debug] [2021-08-22T02:51:07.664Z] ----------------------------------------------------------------------
+[debug] [2021-08-22T02:51:07.665Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Nicolas\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2021-08-22T02:51:07.666Z] CLI Version:   9.16.5
+[debug] [2021-08-22T02:51:07.666Z] Platform:      win32
+[debug] [2021-08-22T02:51:07.666Z] Node Version:  v10.16.3
+[debug] [2021-08-22T02:51:07.667Z] Time:          Sat Aug 21 2021 19:51:07 GMT-0700 (Pacific Daylight Time)
+[debug] [2021-08-22T02:51:07.667Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2021-08-22T02:51:07.724Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-08-22T02:51:07.724Z] > authorizing via signed-in user (nicolas@nftrees.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\Nicolas\Desktop\singularity\NFTrees-hardhat\nftrees-app
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[info] i  .firebaserc already has a default project, using nftrees-firebase. 
+[debug] [2021-08-22T02:51:41.295Z] > refreshing access token with scopes: []
+[debug] [2021-08-22T02:51:41.296Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-08-22T02:51:41.498Z] <<< HTTP RESPONSE 200 {"cache-control":"no-cache, no-store, max-age=0, must-revalidate","expires":"Mon, 01 Jan 1990 00:00:00 GMT","pragma":"no-cache","date":"Sun, 22 Aug 2021 02:51:40 GMT","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-08-22T02:51:41.516Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/nftrees-firebase [none]
+[debug] [2021-08-22T02:51:41.738Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/nftrees-firebase 200
+[debug] [2021-08-22T02:51:41.739Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/nftrees-firebase {"projectId":"nftrees-firebase","projectNumber":"891218775922","displayName":"NFTrees","name":"projects/nftrees-firebase","resources":{"hostingSite":"nftrees-firebase","realtimeDatabaseInstance":"nftrees-firebase-default-rtdb","storageBucket":"nftrees-firebase.appspot.com","locationId":"us-west2"},"state":"ACTIVE"}
+[info] 
+=== Database Setup
+[info] i  database: ensuring required API firebasedatabase.googleapis.com is enabled... 
+[debug] [2021-08-22T02:51:41.742Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2021-08-22T02:51:41.743Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-08-22T02:51:41.888Z] <<< HTTP RESPONSE 200 {"expires":"Mon, 01 Jan 1990 00:00:00 GMT","pragma":"no-cache","cache-control":"no-cache, no-store, max-age=0, must-revalidate","date":"Sun, 22 Aug 2021 02:51:41 GMT","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-08-22T02:51:41.902Z] >>> HTTP REQUEST GET https://serviceusage.googleapis.com/v1/projects/nftrees-firebase/services/firebasedatabase.googleapis.com  
+ 
+[debug] [2021-08-22T02:51:42.361Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sun, 22 Aug 2021 02:51:41 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] +  database: required API firebasedatabase.googleapis.com is enabled 
+[info] 
+[debug] [2021-08-22T02:51:42.362Z] > refreshing access token with scopes: []
+[debug] [2021-08-22T02:51:42.362Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-08-22T02:51:42.499Z] <<< HTTP RESPONSE 200 {"cache-control":"no-cache, no-store, max-age=0, must-revalidate","expires":"Mon, 01 Jan 1990 00:00:00 GMT","date":"Sun, 22 Aug 2021 02:51:41 GMT","pragma":"no-cache","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-08-22T02:51:42.518Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/nftrees-firebase [none]
+[debug] [2021-08-22T02:51:42.678Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/nftrees-firebase 200
+[debug] [2021-08-22T02:51:42.678Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/nftrees-firebase {"projectId":"nftrees-firebase","projectNumber":"891218775922","displayName":"NFTrees","name":"projects/nftrees-firebase","resources":{"hostingSite":"nftrees-firebase","realtimeDatabaseInstance":"nftrees-firebase-default-rtdb","storageBucket":"nftrees-firebase.appspot.com","locationId":"us-west2"},"state":"ACTIVE"}
+[debug] [2021-08-22T02:51:42.679Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2021-08-22T02:51:42.679Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-08-22T02:51:42.818Z] <<< HTTP RESPONSE 200 {"cache-control":"no-cache, no-store, max-age=0, must-revalidate","date":"Sun, 22 Aug 2021 02:51:41 GMT","expires":"Mon, 01 Jan 1990 00:00:00 GMT","pragma":"no-cache","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-08-22T02:51:42.831Z] >>> HTTP REQUEST GET https://firebasedatabase.googleapis.com/v1beta/projects/nftrees-firebase/locations/-/instances/nftrees-firebase-default-rtdb  
+ 
+[debug] [2021-08-22T02:51:43.384Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sun, 22 Aug 2021 02:51:42 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] 
+[info] Firebase Realtime Database Security Rules allow you to define how your data should be
+[info] structured and when your data can be read from and written to.
+[info] 
+[debug] [2021-08-22T02:51:44.500Z] >>> HTTP REQUEST GET https://nftrees-firebase-default-rtdb.firebaseio.com/.settings/rules.json  
+ 
+[debug] [2021-08-22T02:51:44.847Z] <<< HTTP RESPONSE 200 {"server":"nginx","date":"Sun, 22 Aug 2021 02:51:43 GMT","content-type":"application/json; charset=utf-8","content-length":"60","connection":"keep-alive","access-control-allow-origin":"*","cache-control":"no-cache","strict-transport-security":"max-age=31556926; includeSubDomains; preload"}
+[info] +  Database Rules for nftrees-firebase-default-rtdb have been written to database.rules.json. 
+[info] Future modifications to database.rules.json will update Realtime Database Security Rules when you run
+[info] firebase deploy.
+[info] 
+=== Functions Setup
+[info] 
+[info] A functions directory will be created in your project with sample code
+[info] pre-configured. Functions can be deployed with firebase deploy.
+[info] 
+[debug] [2021-08-22T02:51:44.853Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-08-22T02:51:44.854Z] > authorizing via signed-in user (nicolas@nftrees.com)
+[debug] [2021-08-22T02:51:44.854Z] [iam] checking project nftrees-firebase for permissions ["firebase.projects.get"]
+[debug] [2021-08-22T02:51:44.854Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/nftrees-firebase:testIamPermissions  
+ {"permissions":["firebase.projects.get"]}
+[debug] [2021-08-22T02:51:45.049Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sun, 22 Aug 2021 02:51:44 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=60","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-08-22T02:51:45.050Z] >>> HTTP REQUEST POST https://serviceusage.googleapis.com/v1/projects/nftrees-firebase/services/cloudfunctions.googleapis.com:enable  
+ 
+[debug] [2021-08-22T02:51:45.050Z] >>> HTTP REQUEST POST https://serviceusage.googleapis.com/v1/projects/nftrees-firebase/services/runtimeconfig.googleapis.com:enable  
+ 
+[debug] [2021-08-22T02:51:45.453Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sun, 22 Aug 2021 02:51:44 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-08-22T02:51:45.456Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sun, 22 Aug 2021 02:51:44 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] +  Wrote functions/package.json 
+[info] +  Wrote functions/index.js 
+[info] +  Wrote functions/.gitignore 
+[info] 
+=== Hosting Setup
+[info] 
+[info] Your public directory is the folder (relative to your project directory) that
+[info] will contain Hosting assets to be uploaded with firebase deploy. If you
+[info] have a build process for your assets, use your build's output directory.
+[info] 
