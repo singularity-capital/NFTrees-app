@@ -17,7 +17,6 @@ class Dashboard extends React.Component {
       totalTransactions: 0,
       totalNFTrees: 0, 
       totalOffset: 0,
-      totalTrees: 0,
       isLoading: true
     }; 
   }
@@ -29,7 +28,6 @@ class Dashboard extends React.Component {
       this.setState({
         totalNFTrees: impact['nftrees'], 
         totalOffset: impact['offset'],
-        totalTrees: impact['treesPlanted'],
         isLoading: false
       })
     } else {

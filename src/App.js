@@ -44,11 +44,11 @@ class App extends React.Component {
     };
 
     this.contractAddresses = {
-      'NFTree' : '0x8a5cda6bd214A69DA67a774b071f55750A8cda7e',
-      'NFTreeFactory' : '0xf47EaA986ba08A7d0cE634B00E4d47BB9eC70968',
-      'DAI' : '0x8f55de35229e5eC7759f396dC58E12d636Ac1e8c',
-      'USDC' : '0x802B0f664b9c505eA0dbF633F8975C4B680A6354',
-      'USDT' : '0xf8Cb6F45D110b9d54cf0007C5bD0A4FE21bbCb75'
+      'NFTree' : '0x0CF5Bd9237AcC7Ab298Ba521B3261216D2879c39',
+      'NFTreeFactory' : '0xBEC80Dd2af2F40565b013A921d08A20DAD943508',
+      'DAI' : '0xCcD32F185F74683A0836CEc44ad398349343908E',
+      'USDC' : '0x2Fcf323700A22741b233a75B877E4dD7E5Ed0784',
+      'USDT' : '0xb8E2D5d8C8Cf3cE9139415DcE61BB51153fbb1cC'
     }
     // initialize web3 and load blockchain data
 
@@ -56,7 +56,7 @@ class App extends React.Component {
   }
 
   componentDidMount = async () =>  {
-    await this.load();
+    await this.loadWeb3();
  
     this.setState({
       isLoading: false
@@ -72,10 +72,6 @@ class App extends React.Component {
       window.location.reload();
     });
 
-  }
-
-  load = async () => {
-    await this.loadWeb3();
   }
 
 
@@ -185,10 +181,10 @@ class App extends React.Component {
   }
 
   mintNFTree = async (numCredits, totalCost, coin) => {   
-    let amount = String(bigInt(totalCost * (10**18))); 
+    //let amount = String(bigInt(totalCost * (10**18))); 
     if(this.state.isConnected){
-      console.log(numCredits, amount, coin, this.state.Currentaccount)
-      await this.state.NFTreeFactoryContract.methods.mintNFTree(numCredits, amount, coin).send({from: this.state.Currentaccount});
+      console.log(numCredits, totalCost, coin, this.state.Currentaccount)
+      await this.state.NFTreeFactoryContract.methods.mintNFTree(numCredits, totalCost, coin).send({from: this.state.Currentaccount});
     }
     else {
       //alert('connect metamask wallet');
@@ -217,23 +213,19 @@ class App extends React.Component {
     console.log('calculate impact');  
     if(this.state.isConnected){
       let totalOffset = 0;
-      let totalTrees = 0
       let tokens = await this.state.NFTreeContract.methods.tokensOfOwner(this.state.Currentaccount).call();
       if (tokens.length !== 0){
         for (var i = 0; i < tokens.length; i ++) {
           let uri = await this.state.NFTreeContract.methods.tokenURI(tokens[i]).call();
           let obj = await (await fetch(uri)).json();
-          let offset = parseInt(obj['attributes'][0].value, 10);
-          let trees = parseInt(obj['attributes'][1].value, 10);
+          let offset = parseInt(obj['attributes'][1].value, 10);
           totalOffset += offset;
-          totalTrees += trees;
         }
       }
     
       let impact = {
         nftrees: tokens.length,
         offset: totalOffset,
-        treesPlanted: totalTrees
       }
 
       console.log(impact);
