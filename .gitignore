@@ -24,3 +24,5 @@ yarn-error.log*
 
 firebase.js
 Query.mjs
+/functions
+/src/artifacts
