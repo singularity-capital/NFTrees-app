@@ -1,9 +1,10 @@
 // base imports
 import React from 'react';
 import './Plant.css';
+import ReactPlayer from 'react-player'
 import coin1 from '../assets/1-front.gif';
 import coin10 from '../assets/10-front.gif';
-import coin100 from '../assets/100-front.gif';
+// import coin100 from '../assets/FINAL 100 MP4.mp4';
 import coin1000 from '../assets/1000-front.gif';
 import Dropdown from 'react-dropdown';
 import dai from '../assets/dai_logo.png';
@@ -120,7 +121,15 @@ class Plant extends React.Component {
 		}
 		else if(this.state.level === 3){
 			return(
-				<img src = {coin100} height = {400} width = {400} alt = {'Could not load'}/>
+				<ReactPlayer
+            className='video-player'
+            url= 'videos/FINAL 100 MP4.mp4'
+            width='100%'
+            height='100%'
+            controls = {false}
+						playing = {true}
+						loop = {true}
+				/>
 			)
 		}
 		else{
@@ -147,16 +156,16 @@ class Plant extends React.Component {
 
 	displayLevelDescription = () => {
 		if(this.state.level === 1){
-			return('1 tonne CO₂ offset + 1 tree planted');
+			return('1 tonne CO₂ offset');
 		}
 		else if (this.state.level === 2){
-			return('10 tonnes CO₂ offset + 10 trees planted');
+			return('10 tonnes CO₂ offset');
 		}
 		else if (this.state.level === 3){
-			return('100 tonnes CO₂ offset + 100 trees planted');
+			return('100 tonnes CO₂ offset');
 		}
 		else{
-			return('1,000 tonnes CO₂ offset + 1,000 trees planted');
+			return('1,000 tonnes CO₂ offset');
 		}
 	}
 

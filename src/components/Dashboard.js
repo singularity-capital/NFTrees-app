@@ -148,7 +148,7 @@ class Dashboard extends React.Component {
                 </div>
               </div>
               <div className = 'dashboardSummary'>
-                Your on-chain activity has created approximately {this.state.totalKg.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} kg of carbon emissions. With {this.state.totalNFTrees} NFTrees 
+                Your on-chain activity has created {this.state.totalKg.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} kg of carbon emissions. With {this.state.totalNFTrees} NFTrees 
                 purchased, you have succesfully offset and sequestered {(this.state.totalOffset * 1000).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} kg of carbon from the environment. 
                 This makes your Ethereum wallet carbon {this.summaryOutput()} View your NFTrees on <a className = 'dashboardLink' href="https://opensea.io/collection/nftrees-carbon-credits" target='_blank' rel='noreferrer'>OpenSea</a> and 
                 verify the carbon offsets from our <a className = 'dashboardLink' href="https://offsetra.com/" target='_blank' rel='noreferrer'>Portfolio</a>.

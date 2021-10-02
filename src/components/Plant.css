@@ -196,6 +196,11 @@ img {
 	border-radius: 20px;
 }
 
+.video-player {
+	border-radius: 20px;
+	overflow: hidden;
+}
+
 .Dropdown-root {
 	position: relative;
 }
