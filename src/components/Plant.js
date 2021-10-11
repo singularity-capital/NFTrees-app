@@ -2,10 +2,12 @@
 import React from 'react';
 import './Plant.css';
 import ReactPlayer from 'react-player'
-import coin1 from '../assets/1-front.gif';
-import coin10 from '../assets/10-front.gif';
-// import coin100 from '../assets/FINAL 100 MP4.mp4';
-import coin1000 from '../assets/1000-front.gif';
+/*
+import coin1 from '../assets/1_video.mp4';
+import coin10 from '../assets/10_video.mp4';
+import coin100 from '../assets/100_video.mp4';
+import coin1000 from '../assets/1000_video.mp4';
+*/
 import Dropdown from 'react-dropdown';
 import dai from '../assets/dai_logo.png';
 import usdc from '../assets/usdc_logo.png';
@@ -111,30 +113,54 @@ class Plant extends React.Component {
 	displayNFTree = () => {
 		if(this.state.level === 1){
 			return(
-					<img src = {coin1} height = {400} width = {400} alt = {'Could not load'}/>
+				<ReactPlayer
+					className='video-player'
+					url= 'videos/1_video.mp4'
+					width='100%'
+					height='100%'
+					controls = {false}
+					playing = {true}
+					loop = {true}
+				/>
 			)
 		} 
 		else if(this.state.level === 2){
 			return(
-				<img src = {coin10} height = {400} width = {400} alt = {'Could not load'}/>
+				<ReactPlayer
+					className='video-player'
+					url= 'videos/10_video.mp4'
+					width='100%'
+					height='100%'
+					controls = {false}
+					playing = {true}
+					loop = {true}
+				/>
 			)
 		}
 		else if(this.state.level === 3){
 			return(
 				<ReactPlayer
-            className='video-player'
-            url= 'videos/FINAL 100 MP4.mp4'
-            width='100%'
-            height='100%'
-            controls = {false}
-						playing = {true}
-						loop = {true}
+					className='video-player'
+					url= 'videos/100_video.mp4'
+					width='100%'
+					height='100%'
+					controls = {false}
+					playing = {true}
+					loop = {true}
 				/>
 			)
 		}
 		else{
 			return(
-				<img src = {coin1000} height = {400} width = {400} alt = {'Could not load'}/>
+				<ReactPlayer
+					className='video-player'
+					url= 'videos/1000_video.mp4'
+					width='100%'
+					height='100%'
+					controls = {false}
+					playing = {true}
+					loop = {true}
+				/>
 			)
 		}
 	}
