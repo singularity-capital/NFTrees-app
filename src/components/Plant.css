@@ -16,7 +16,7 @@
 }
 
 .plantLeft {
-	height: 350px;
+	height: 400px;
 	width: 500px;
 	background-color: rgba(255, 255, 255, 0.8);
 	margin-top: auto;
@@ -34,7 +34,9 @@
 	color: #6d6b6b;
 	text-align: left;
 	font-weight: 600;
-	font-size: 22px;
+	font-size: 20px;
+	margin-top: 6px;
+	padding-left: 10px;
 }
 
 .levelSelector {
@@ -42,7 +44,7 @@
 	flex-direction: row;
 	width: 100%;
 	height: 70px;
-	margin-top: 16px;
+	margin-top: 20px;
 	border-top-left-radius: 20px;
 	border-top-right-radius: 20px;
 	border-color: #cacaca;
@@ -65,7 +67,7 @@
 	margin-top: auto;
 	margin-bottom: auto;
 	width: 50px;
-	height: 30px;
+	height: 32px;
 	font-size: 20px;
 	color: white;
 	border-radius: 20px;
@@ -94,9 +96,11 @@
 .levelDescription {
 	display: flex;
 	flex-direction: column;
-	justify-content: center; 
+	justify-content: center;
+	padding-left: 0px;
+	color: rgb(160, 160, 160); 
 	width: 100%;
-	height: 30px;
+	height: 36px;
 	border-bottom-left-radius: 20px;
 	border-bottom-right-radius: 20px;
 	border-color: #cacaca;
@@ -116,8 +120,8 @@
 	display: flex;
 	flex-direction: row;
 	width: 100%;
-	height: 70px;
-	margin-top: 18px;
+	height: 80px;
+	margin-top: 28px;
 	border-radius: 20px;
 	border-color: #cacaca;
 	border-width: 1px;
@@ -140,8 +144,8 @@
 }
 
 .currencyText {
-	margin:3px;
-	text-align:center;
+	margin: 3px;
+	text-align: center;
 	color: #6d6b6b;
 }
 
@@ -168,7 +172,7 @@
 .plantButton {
 	width: 100%;
 	height: 60px;
-	margin-top: 18px;
+	margin-top: 28px;
 	border-radius: 20px;
 	border-width: 1px;
 	border-style: solid;
@@ -176,7 +180,7 @@
 	background-color: #52B788;
 	font-size: 18px;
 	font-weight: 600;
-	color: #16242d;
+	color: white;
 }
 
 .plantButton:hover {
