@@ -123,3 +123,111 @@
 	color: #52B788;
   text-decoration: none;
 }
+
+@media only screen and (max-width: 600px) {
+
+	.impactContainer {
+		height: calc(100vh - 100px);
+		padding-top: 40px;
+	}
+	
+	.dashboard {
+		width: 300px;
+		height: 360px;
+		margin: auto;
+		padding: 10px;
+	}
+	
+	.dashboardHeader {
+		width: 100%;
+		height: 60px;
+	}
+	
+	.dashboardTitle {
+		margin: 0px;
+		margin-left: 12px;
+		text-align: left;
+		font-size: 14px;
+	}
+	
+	.carbonFootprint {
+		margin: 0px;
+		margin-right: 12px;
+		text-align: right;
+		font-size: 14px;
+	}
+	
+	.carbonFootprintValue {
+		margin: 0px;
+		text-align: right;
+		font-size: 16px;
+	}
+	
+	.carbonFootprintUnit {
+		margin-right: 12px;
+		font-size: 12px;
+	}
+	
+	.emissionsTitle {
+		margin-bottom: 2px;
+		font-size: 12px;
+	}
+	
+	.emissionsValue {
+		font-size: 14px;
+	}
+	
+	.impactTitle {
+		margin-top: 10px;
+		margin-bottom: 2px;
+		font-size: 12px;
+	}
+	
+	.impactValue {
+		font-size: 14px;
+	}
+	
+	.dashboardContent {
+		width: 100%;
+		height: 60px;
+		padding: 2px;
+	}
+	
+	.dashboardLeft {
+	  width: 30%;
+	
+	}
+	
+	.dashboardMiddle {
+	  width: 30%;
+	
+	}
+	
+	.dashboardRight {
+	  width: 30%;
+	
+	}
+	
+	.contentHeader{
+		font-size: 8px;
+		color: #6d6b6b;
+		margin-top: 5px;
+		margin-bottom: 5px;
+	} 
+	
+	
+	.dashboardSummary {
+		width: 100%;
+		margin-top: 10px;
+		height: 120px;
+		line-height: 14px;
+		font-size: 10px;
+		font-weight: 600;
+	}
+	
+	.dashboardLink {
+		color: #52B788;
+	  text-decoration: none;
+	}
+	
+}

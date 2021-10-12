@@ -3,7 +3,6 @@
   font-family: 'Montserrat', sans-serif;
   height: auto;
   width: 100%;
-  overflow: hidden;
   overflow-y: auto;
 }
 
@@ -16,6 +15,7 @@
   background-image: url('./assets/test.jpg');
   background-position: center;
   background-size: cover;
+  background-attachment: fixed;
 }
 
 @media (prefers-reduced-motion: no-preference) {

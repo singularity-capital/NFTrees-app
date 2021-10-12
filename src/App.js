@@ -44,11 +44,11 @@ class App extends React.Component {
     };
 
     this.contractAddresses = {
-      'NFTree' : '0x0CF5Bd9237AcC7Ab298Ba521B3261216D2879c39',
-      'NFTreeFactory' : '0xBEC80Dd2af2F40565b013A921d08A20DAD943508',
-      'DAI' : '0xCcD32F185F74683A0836CEc44ad398349343908E',
-      'USDC' : '0x2Fcf323700A22741b233a75B877E4dD7E5Ed0784',
-      'USDT' : '0xb8E2D5d8C8Cf3cE9139415DcE61BB51153fbb1cC'
+      'NFTree' : '0x1153C35574ce54005787F4f8B946F03234E4229a',
+      'NFTreeFactory' : '0x386877f00ACB71467ad7708C69ea140D4e58769d',
+      'DAI' : '0x297890d74B2Ea31b6C6CB1A09d2C4078f587FCd6',
+      'USDC' : '0x748985b2FB7A90F06609F2160229b870528c6D31',
+      'USDT' : '0x5367Ceeb60FF7f44C4AE0e3fd7d1b1d98fFB818a'
     }
     // initialize web3 and load blockchain data
 
@@ -205,7 +205,6 @@ class App extends React.Component {
           amount: totalCost,
           coin: coin,
           carbon_credits: numCredits,
-          trees_planted: numCredits
       });
   }
 

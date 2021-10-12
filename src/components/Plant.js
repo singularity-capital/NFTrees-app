@@ -104,7 +104,7 @@ class Plant extends React.Component {
 		} else {
 			return(
 				<button className = 'plantButton' >
-					<p> Wrong Network </p> 
+					<p> Plant </p> 
 				</button>
 			)
 		}

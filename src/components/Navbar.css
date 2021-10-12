@@ -130,3 +130,66 @@ sup {
 	vertical-align: super;
 	font-size: 10px;
 }
+
+@media only screen and (max-width: 900px) {
+	.logo {
+	  text-decoration: none;
+	  height: 50px;
+	  padding-left: 30px;
+	  margin-top: 30px;
+	  display: flex;
+	  flex-direction: row;
+	}
+  
+	.menu {
+	  display: none;
+	}
+
+	.connectWalletMobile {
+		margin-top: 32px;
+		margin-right: 50px;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		height: 44px;
+		width: 100%;
+		border-radius: 10px;
+		border-color: transparent;
+		background-color: #52b788;
+		font-weight: 600;
+	}
+	
+	.connectWalletMobile:hover {
+		cursor: pointer;
+		border-width: 1px;
+		border-style: solid;
+		border-color: #57cc99;
+		transition: 0.5s;
+	
+	}
+
+	.addressContainerMobile {
+		margin-top: 32px;
+		margin-right: 50px;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		height: 44px;
+		width: 100%;
+		border-radius: 10px;
+		border-color: transparent;
+		background-color: #52b788;
+		font-weight: 600;
+	}
+
+	.connectWallet {
+		display: none;
+	}
+
+	.addressContainer {
+		display: none;
+	}
+  
+  }

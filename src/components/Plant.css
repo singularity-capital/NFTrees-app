@@ -190,7 +190,7 @@
 .plantRight {
 	height: 400px;
 	width: 400px;
-	background-color: #fff;
+	background-color: #1D2D3A;
 	margin-top: auto;
 	margin-bottom: auto;
 	border-radius: 20px;
@@ -298,4 +298,188 @@ img {
 	cursor: default;
 	display: block;
 	padding: 8px 10px;
+}
+
+@media only screen and (max-width: 1200px) {
+	.plantContainer {
+		height: calc(100vh - 100px);
+		padding-top: 100px;
+	}
+
+	.plantLeft {
+		margin-right: 50px;
+	}
+
+  
+}
+
+@media only screen and (max-width: 1000px) {
+	.plantContainer {
+		overflow: scroll;
+		padding-bottom: 30px;
+	}
+
+	.plantLeft {
+		margin-right: 0px;
+	}
+
+	.plantRight {
+		margin-top: 30px;
+		margin-bottom: 30px;
+	}
+
+	.plantGrid {
+		margin-top: 180px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+}
+
+@media only screen and (max-width: 600px) {
+	.plantContainer {
+		padding-top: 70px;
+	}
+	
+	.plantGrid {
+		margin-top: 80px;
+	}
+
+	.plantLeft {
+		width: 300px;
+
+	}
+
+	.plantLeft {
+		height: 250px;
+		width: 300px;
+		padding: 10px;
+	}
+	
+	.plantTitle {
+		font-size: 14px;
+		margin-top: 6px;
+		padding-left: 10px;
+	}
+	
+	.levelSelector {
+		display: flex;
+		flex-direction: row;
+		width: 100%;
+		height: 40px;
+		margin-top: 10px;
+	}
+	
+	.selector {
+		width: 25%;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	
+	.selectorButton {
+		display: block;
+		margin-top: auto;
+		margin-bottom: auto;
+		width: 30px;
+		height: 18px;
+		font-size: 14px;
+	}
+	
+	.selectorButton:hover {
+		cursor:pointer;
+	}
+	
+	.level {
+		width: 60%;
+		margin-right: auto;
+	}
+	
+	.levelText {
+		font-size: 16px;
+	}
+	
+	.levelDescription {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		padding-left: 0px;
+		width: 100%;
+		height: 25px;
+	}
+
+	.description{
+		font-size: 12px;
+	}
+	
+	.currencySelector {
+		display: flex;
+		flex-direction: row;
+		width: 100%;
+		height: 60px;
+		margin-top: 10px;
+	}
+	
+	.currency {
+		width: 25%;
+		margin: auto;
+	}
+	
+	.currencyOption {
+		width: 70px;
+		height: fit-content;
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-start;
+	}
+	
+	.currencyText {
+		font-size: 14px;
+		margin: 3px;
+		text-align: center;
+		color: #6d6b6b;
+	}
+	
+	.currencyLogo {
+		height: 20px;
+		margin-top: auto;
+		margin-bottom: auto;
+		margin-right: 6px;
+		margin-left: 10px;
+	}
+	
+	.total {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		width: 60%;
+		margin-right: auto;
+	}
+	
+	.totalText {
+		margin-left: 40px;
+		font-size: 16px;
+	}
+	
+	.plantButton {
+		width: 100%;
+		height: 50px;
+		margin-top: 10px;
+		font-size: 16px;
+	}
+
+	.plantRight {
+		height: 300px;
+		width: 300px;
+		background-color: #1D2D3A;
+	}
+	
+	img {
+		border-radius: 20px;
+	}
+	
+	.video-player {
+		border-radius: 20px;
+		overflow: hidden;
+	}
+  
 }
