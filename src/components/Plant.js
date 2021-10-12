@@ -121,6 +121,7 @@ class Plant extends React.Component {
 					controls = {false}
 					playing = {true}
 					loop = {true}
+					muted = {true}
 				/>
 			)
 		} 
@@ -134,6 +135,7 @@ class Plant extends React.Component {
 					controls = {false}
 					playing = {true}
 					loop = {true}
+					muted = {true}
 				/>
 			)
 		}
@@ -147,6 +149,7 @@ class Plant extends React.Component {
 					controls = {false}
 					playing = {true}
 					loop = {true}
+					muted = {true}
 				/>
 			)
 		}
@@ -160,6 +163,7 @@ class Plant extends React.Component {
 					controls = {false}
 					playing = {true}
 					loop = {true}
+					muted = {true}
 				/>
 			)
 		}

@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "nftrees-firebase"
+  },
+  "targets": {
+    "nftrees-firebase": {
+      "hosting": {
+        "app": [
+          "nftrees-app"
+        ]
+      }
+    }
   }
 }
