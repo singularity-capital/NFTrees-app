@@ -1,6 +1,7 @@
 .impactContainer {
 	height: calc(100vh - 100px);
-	padding-top: 100px;
+	padding-top: 80px;
+	overflow: scroll;
 }
 
 .dashboard {
@@ -124,8 +125,19 @@
   text-decoration: none;
 }
 
-@media only screen and (max-width: 600px) {
+.dashboardSpacer {
+	display: none;
+}
 
+@media only screen and (max-height: 800px) {
+	.dashboardSpacer {
+		display: block;
+		height: 20vh;
+	}
+	
+}
+
+@media only screen and (max-width: 600px) {
 	.impactContainer {
 		height: calc(100vh - 100px);
 		padding-top: 40px;

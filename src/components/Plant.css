@@ -5,7 +5,8 @@
 
 .plantContainer {
 	height: calc(100vh - 100px);
-	padding-top: 180px;
+	padding-top: 140px;
+	overflow: scroll;
 }
 
 .plantGrid {
@@ -300,9 +301,20 @@ img {
 	padding: 8px 10px;
 }
 
-@media only screen and (max-width: 1200px) {
+.plantSpacer {
+	display: none;
+}
+
+@media only screen and (max-height: 800px) and (max-width: 1000px) {
+	.plantSpacer {
+		display: block;
+		height: 20vh;
+	}
+	
+}
+
+@media only screen and (max-width: 1400px) {
 	.plantContainer {
-		height: calc(100vh - 100px);
 		padding-top: 100px;
 	}
 
@@ -314,10 +326,6 @@ img {
 }
 
 @media only screen and (max-width: 1000px) {
-	.plantContainer {
-		overflow: scroll;
-		padding-bottom: 30px;
-	}
 
 	.plantLeft {
 		margin-right: 0px;
@@ -329,7 +337,8 @@ img {
 	}
 
 	.plantGrid {
-		margin-top: 180px;
+		margin-top: 0px;
+		height: 800px;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -342,7 +351,8 @@ img {
 	}
 	
 	.plantGrid {
-		margin-top: 80px;
+		margin-top: 89px;
+		height: 400px;
 	}
 
 	.plantLeft {

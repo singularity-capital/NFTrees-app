@@ -329,6 +329,7 @@ class Plant extends React.Component {
 
 						<div className = 'plantRight'>{this.displayNFTree()}</div>
 					</div>
+					<div className = "plantSpacer"/> 
 				</div>
 			</div>
 		);

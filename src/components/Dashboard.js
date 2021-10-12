@@ -154,6 +154,7 @@ class Dashboard extends React.Component {
                 verify the carbon offsets from our <a className = 'dashboardLink' href="https://offsetra.com/" target='_blank' rel='noreferrer'>Portfolio</a>.
               </div>
             </div>
+            <div className = "dashboardSpacer"/> 
           </div>
         </div>
       );
