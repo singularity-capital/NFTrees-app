@@ -1,7 +1,7 @@
 .impactContainer {
 	height: calc(100vh - 100px);
 	padding-top: 80px;
-	overflow: scroll;
+	/*overflow: scroll;*/
 }
 
 .dashboard {

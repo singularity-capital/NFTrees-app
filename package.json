@@ -7,7 +7,7 @@
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
-    "big-integer": "^1.6.49",
+    "big-integer": "^1.6.50",
     "ethereum-emissions-calculator": "^2.1.0",
     "firebase": "^8.10.0",
     "react": "^17.0.2",
@@ -21,7 +21,7 @@
     "react-router-hash-link": "^2.4.3",
     "react-scripts": "4.0.3",
     "web-vitals": "^1.1.2",
-    "web3": "^1.5.3"
+    "web3": "^1.6.0"
   },
   "scripts": {
     "start": "react-scripts start",
