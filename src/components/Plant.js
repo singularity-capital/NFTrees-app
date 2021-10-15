@@ -186,16 +186,16 @@ class Plant extends React.Component {
 
 	displayLevelDescription = () => {
 		if(this.state.level === 1){
-			return('1 tonne CO₂ offset');
+			return('1 tonne CO₂ offset → 6 trees planted');
 		}
 		else if (this.state.level === 2){
-			return('10 tonnes CO₂ offset');
+			return('10 tonnes CO₂ offset → 60 trees planted');
 		}
 		else if (this.state.level === 3){
-			return('100 tonnes CO₂ offset');
+			return('100 tonnes CO₂ offset → 600 trees planted');
 		}
 		else{
-			return('1,000 tonnes CO₂ offset');
+			return('1,000 tonnes CO₂ offset → 6,000 trees planted');
 		}
 	}
 
