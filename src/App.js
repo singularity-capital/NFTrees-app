@@ -44,11 +44,11 @@ class App extends React.Component {
     };
 
     this.contractAddresses = {
-      'NFTree' : '0x1153C35574ce54005787F4f8B946F03234E4229a',
-      'NFTreeFactory' : '0x386877f00ACB71467ad7708C69ea140D4e58769d',
-      'DAI' : '0x297890d74B2Ea31b6C6CB1A09d2C4078f587FCd6',
-      'USDC' : '0x748985b2FB7A90F06609F2160229b870528c6D31',
-      'USDT' : '0x5367Ceeb60FF7f44C4AE0e3fd7d1b1d98fFB818a'
+      'NFTree' : '0xa44929195B0c3AF215c6efbe5c295cc6b99F7C44',
+      'NFTreeFactory' : '0xC8483f868e41E996761a701aCeA884e963cF88Fe',
+      'DAI' : '0x6B175474E89094C44Da98b954EedeAC495271d0F',
+      'USDC' : '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
+      'USDT' : '0xdac17f958d2ee523a2206206994597c13d831ec7'
     }
     // initialize web3 and load blockchain data
 
@@ -104,7 +104,7 @@ class App extends React.Component {
     // get networkId, display error if networkId != 1 (ethereum mainnet)
     // 1337 local host
     const networkId = await window.web3.eth.net.getId()
-    if(networkId !== 4){
+    if(networkId !== 1){
       this.setState({
         isConnected: false,
         Currentnetwork: networkId,

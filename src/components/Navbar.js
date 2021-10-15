@@ -12,7 +12,7 @@ function Navbar (props){
 
     function SubstringAddress () {
 			if(props.account){
-				if (props.Currentnetwork === 4){
+				if (props.Currentnetwork === 1){
 						return(<div className = 'addressContainer'><div className = 'addressText'>{props.account.substring(0, 5) + "..." + props.account.substring(36, 42)}</div></div>)
 				}
 				// if network is wrong display 'wrong network'
