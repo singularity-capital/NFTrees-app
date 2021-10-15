@@ -155,6 +155,7 @@ class Dashboard extends React.Component {
               </div>
             </div>
             <div className = "dashboardSpacer"/> 
+            <div className = "carbonFYI">Calculated with Carbon.fyi</div>
           </div>
         </div>
       );

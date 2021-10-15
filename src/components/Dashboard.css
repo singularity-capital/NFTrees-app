@@ -1,7 +1,6 @@
 .impactContainer {
 	height: calc(100vh - 100px);
 	padding-top: 80px;
-	/*overflow: scroll;*/
 }
 
 .dashboard {
@@ -129,7 +128,23 @@
 	display: none;
 }
 
-@media only screen and (max-height: 800px) {
+.carbonFYI {
+	color: #6d6b6b;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	text-align: center;
+}
+
+@media only screen and (max-height: 750px) {
+	.impactContainer {
+		overflow-y: scroll;
+	}
+	
+	.carbonFYI {
+		position:relative;
+	}
+
 	.dashboardSpacer {
 		display: block;
 		height: 20vh;
