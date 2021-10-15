@@ -4,6 +4,8 @@ import './App.css';
 
 // import packages
 import Web3 from 'web3';
+import Web3Modal from "web3modal";
+import WalletConnectProvider from "@walletconnect/web3-provider";
 import {
   BrowserRouter as Router,
   Switch,
@@ -25,6 +27,9 @@ import USDTABI from './artifacts/contracts/USDT.sol/USDT.json';
 import Navbar from './components/Navbar';
 import Plant from './components/Plant';
 import Dashboard from './components/Dashboard';
+
+let web3Modal;
+let provider;
 
 class App extends React.Component {
 
@@ -50,6 +55,8 @@ class App extends React.Component {
       'USDC' : '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
       'USDT' : '0xdac17f958d2ee523a2206206994597c13d831ec7'
     }
+
+    
     // initialize web3 and load blockchain data
 
     this.setState = this.setState.bind(this);
@@ -79,6 +86,21 @@ class App extends React.Component {
 
   // detect ethereum browser 
   loadWeb3 = async () => {
+    const providerOptions = {
+      walletconnect: {
+        package: WalletConnectProvider, // required
+        options: {
+          infuraId: "27e484dcd9e3efcfd25a83a78777cdf1" // required
+        }
+      }
+    };
+
+    web3Modal = new Web3Modal({
+      network: "mainnet", // optional
+      cacheProvider: true, // optional
+      providerOptions // required
+    });
+
     if(window.ethereum) {
       window.web3 = new Web3(window.ethereum)
       await this.loadBlockchainData();
@@ -87,6 +109,7 @@ class App extends React.Component {
         'no ethereum wallet detected.'
       );
     }
+    
   }
 
   checkConnection = async () => {
@@ -117,6 +140,17 @@ class App extends React.Component {
   }
 
   connectWallet = async () => {
+
+    web3Modal.clearCachedProvider();
+    console.log("Opening a dialog", web3Modal);
+    try {
+      provider = await web3Modal.connect();
+      window.web3 = new Web3(provider);
+    } catch(e) {
+      console.log("Could not get a wallet connection", e);
+    }
+    
+    /*
     if(window.web3) {
       await window.ethereum.enable();
     } else {
@@ -124,7 +158,9 @@ class App extends React.Component {
         'no ethereum wallet detected.'
       );
     }
+    */
     await this.loadBlockchainData();
+    
   }
 
   // load ethereum accounts, network, and smart contracts 
