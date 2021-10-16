@@ -50,16 +50,16 @@ class App extends React.Component {
 
     this.contractAddresses = {
       'NFTree' : '0xa44929195B0c3AF215c6efbe5c295cc6b99F7C44',
-      'NFTreeFactory' : '0xC8483f868e41E996761a701aCeA884e963cF88Fe',
-      'DAI' : '0x6B175474E89094C44Da98b954EedeAC495271d0F',
-      'USDC' : '0xa2327a938Febf5FEC13baCFb16Ae10EcBc4cbDCF',
+      'NFTreeFactory' : '0x7D20E9F51832590E98b02689648682717dd74016',
+      'DAI' : '0x6b175474e89094c44da98b954eedeac495271d0f',
+      'USDC' : '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48',
       'USDT' : '0xdac17f958d2ee523a2206206994597c13d831ec7'
     }
 
     this.decimals = {
       "DAI": 18,
-      "USDC": 18,
-      "USDT": 18
+      "USDC": 6,
+      "USDT": 6
     }
 
     

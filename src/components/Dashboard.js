@@ -140,7 +140,7 @@ class Dashboard extends React.Component {
                 </div>
                 <div className = 'dashboardRight'>
                   <p className = 'contentHeader'>Trees Planted</p>
-                  <CountUp className = 'impactValue' end = {this.state.totalTrees} duration = {1} separator ={','}/>
+                  <CountUp className = 'impactValue' end = {this.state.totalOffset * 6} duration = {1} separator ={','}/>
                 </div>
                 <div className = 'dashboardMiddle'>
                   <p className = 'contentHeader'>CO<sub>2</sub> Offset (kg)</p>
@@ -151,7 +151,7 @@ class Dashboard extends React.Component {
                 Your on-chain activity has created {this.state.totalKg.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} kg of carbon emissions. With {this.state.totalNFTrees} NFTrees 
                 purchased, you have succesfully offset and sequestered {(this.state.totalOffset * 1000).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} kg of carbon from the environment. 
                 This makes your Ethereum wallet carbon {this.summaryOutput()} View your NFTrees on <a className = 'dashboardLink' href="https://opensea.io/collection/nftrees-carbon-credits" target='_blank' rel='noreferrer'>OpenSea</a> and 
-                verify the carbon offsets from our <a className = 'dashboardLink' href="https://offsetra.com/" target='_blank' rel='noreferrer'>Portfolio</a>.
+                verify the carbon offsets from our <a className = 'dashboardLink' href="https://offsetra.com/profile/NFTrees" target='_blank' rel='noreferrer'>Portfolio</a>.
               </div>
             </div>
             <div className = "dashboardSpacer"/> 
