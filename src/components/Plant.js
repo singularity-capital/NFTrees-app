@@ -241,7 +241,7 @@ class Plant extends React.Component {
 	checkApproval = async () => {
 		let allowance = await this.props.getAllowance(this.coins[this.state.coinIndex]);
 		let hasBalance = await this.props.hasBalance(this.coins[this.state.coinIndex], this.state.totalCost);
-		if(allowance < this.state.totalCost * (10**18)){
+		if(allowance < this.state.totalCost * (10**this.props.decimals[this.coins[this.state.coinIndex]])){
 			this.setState({
 				isApproved: false,
 				hasBalance: hasBalance

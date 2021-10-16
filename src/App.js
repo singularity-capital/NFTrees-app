@@ -56,6 +56,12 @@ class App extends React.Component {
       'USDT' : '0xdac17f958d2ee523a2206206994597c13d831ec7'
     }
 
+    this.decimals = {
+      "DAI": 18,
+      "USDC": 18,
+      "USDT": 18
+    }
+
     
     // initialize web3 and load blockchain data
 
@@ -150,15 +156,6 @@ class App extends React.Component {
       console.log("Could not get a wallet connection", e);
     }
     
-    /*
-    if(window.web3) {
-      await window.ethereum.enable();
-    } else {
-      window.alert(
-        'no ethereum wallet detected.'
-      );
-    }
-    */
     await this.loadBlockchainData();
     
   }
@@ -199,7 +196,7 @@ class App extends React.Component {
   }
 
   approve = async (totalCost, coin) => {
-    let amount = String(bigInt(totalCost * (10**18)));
+    let amount = String(bigInt(totalCost * (10**this.decimals[coin])));
     if(this.state.isConnected){
       if(coin === 'DAI') {
         await this.state.DAIContract.methods.approve(this.contractAddresses['NFTreeFactory'], amount).send({from: this.state.Currentaccount});
@@ -285,7 +282,7 @@ class App extends React.Component {
         balance = await this.state.USDTContract.methods.balanceOf(this.state.Currentaccount).call();
       }
 
-      return balance >= totalCost * (10**18);
+      return balance >= totalCost * (10**this.decimals[coin]);
     }
     else {
       //alert('connect metamask wallet');
@@ -311,7 +308,7 @@ class App extends React.Component {
                 <Navbar account = {this.state.Currentaccount} connectWallet = {this.connectWallet} isConnected = {this.state.isConnected} Currentnetwork = {this.state.Currentnetwork}/>
                 <Plant getAllowance = {this.getAllowance} approve = {this.approve} mintNFTree = {this.mintNFTree} insertDB = {this.insertDB} isConnected = {this.state.isConnected} 
                   NFTreeContract = {this.state.NFTreeContract} DAIContract = {this.state.DAIContract} USDCContract = {this.state.USDCContract} USDTContract = {this.state.USDTContract}
-                  hasBalance = {this.hasBalance}/>
+                  hasBalance = {this.hasBalance} decimals = {this.decimals}/>
                 </div>
               </Route>
     
