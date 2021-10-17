@@ -28,8 +28,9 @@ import Navbar from './components/Navbar';
 import Plant from './components/Plant';
 import Dashboard from './components/Dashboard';
 
-let web3Modal;
+let web3;
 let provider;
+let web3Modal;
 
 class App extends React.Component {
 
@@ -62,9 +63,6 @@ class App extends React.Component {
       "USDT": 6
     }
 
-    
-    // initialize web3 and load blockchain data
-
     this.setState = this.setState.bind(this);
   }
 
@@ -76,15 +74,15 @@ class App extends React.Component {
     });
 
     // add metamask event listeners
-
-    window.ethereum.on('accountsChanged', (accounts) => {
-      window.location.reload();
-    });
-    
-    window.ethereum.on('chainChanged', async (chainId) => {
-      window.location.reload();
-    });
-
+    if(window.ethereum) {
+      window.ethereum.on('accountsChanged', (accounts) => {
+        window.location.reload();
+      });
+      
+      window.ethereum.on('chainChanged', async (chainId) => {
+        window.location.reload();
+      });
+    }
   }
 
 
@@ -96,31 +94,27 @@ class App extends React.Component {
       walletconnect: {
         package: WalletConnectProvider, // required
         options: {
-          infuraId: "27e484dcd9e3efcfd25a83a78777cdf1" // required
+          infuraId: "782109c6748c48d6b91c3eafa72b5292" // required
         }
       }
     };
 
     web3Modal = new Web3Modal({
       network: "mainnet", // optional
-      cacheProvider: true, // optional
+      cacheProvider: false, // optional
       providerOptions // required
     });
 
     if(window.ethereum) {
-      window.web3 = new Web3(window.ethereum)
+      web3 = new Web3(window.ethereum)
       await this.loadBlockchainData();
-    } else {
-      window.alert(
-        'no ethereum wallet detected.'
-      );
     }
-    
   }
 
   checkConnection = async () => {
+
     // fetch user eth account
-    const accounts = await window.web3.eth.getAccounts();
+    const accounts = await web3.eth.getAccounts();
     const account = accounts[0];
     // set current account to account[0] if unlocked
     if (account){
@@ -128,11 +122,12 @@ class App extends React.Component {
         isConnected: true,
         Currentaccount: account,
       });
+      // console.log("account connected");
     }
 
     // get networkId, display error if networkId != 1 (ethereum mainnet)
     // 1337 local host
-    const networkId = await window.web3.eth.net.getId()
+    const networkId = await web3.eth.net.getId()
     if(networkId !== 1){
       this.setState({
         isConnected: false,
@@ -148,15 +143,29 @@ class App extends React.Component {
   connectWallet = async () => {
 
     web3Modal.clearCachedProvider();
-    console.log("Opening a dialog", web3Modal);
     try {
       provider = await web3Modal.connect();
-      window.web3 = new Web3(provider);
+      provider.on("connect", (info) => {
+        window.location.reload();
+      });
+      provider.on("accountsChanged", (accounts) => {
+        window.location.reload();
+      });
+      provider.on("chainChanged", (chainId) => {
+        window.location.reload();
+      });
+      web3 = new Web3(provider);
+      await this.loadBlockchainData();
+
     } catch(e) {
-      console.log("Could not get a wallet connection", e);
+
+      this.setState({
+        isConnected: false,
+      });
+      window.alert(
+        'No Ethereum wallet connected.'
+      );
     }
-    
-    await this.loadBlockchainData();
     
   }
 
@@ -165,13 +174,13 @@ class App extends React.Component {
     // check
     await this.checkConnection();
 
-    if(window.ethereum){
+    if(this.state.isConnected){
       this.setState({
-        NFTreeContract: await new window.web3.eth.Contract(NFTreeABI.abi, this.contractAddresses['NFTree']),
-        NFTreeFactoryContract: await new window.web3.eth.Contract(NFTreeFactoryABI.abi, this.contractAddresses['NFTreeFactory']),
-        DAIContract: await new window.web3.eth.Contract(DAIABI.abi, this.contractAddresses['DAI']),
-        USDCContract: await new window.web3.eth.Contract(USDCABI.abi, this.contractAddresses['USDC']),
-        USDTContract: await new window.web3.eth.Contract(USDTABI.abi, this.contractAddresses['USDT']),
+        NFTreeContract: await new web3.eth.Contract(NFTreeABI.abi, this.contractAddresses['NFTree']),
+        NFTreeFactoryContract: await new web3.eth.Contract(NFTreeFactoryABI.abi, this.contractAddresses['NFTreeFactory']),
+        DAIContract: await new web3.eth.Contract(DAIABI.abi, this.contractAddresses['DAI']),
+        USDCContract: await new web3.eth.Contract(USDCABI.abi, this.contractAddresses['USDC']),
+        USDTContract: await new web3.eth.Contract(USDTABI.abi, this.contractAddresses['USDT']),
       });
     }
   }

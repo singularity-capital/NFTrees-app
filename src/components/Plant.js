@@ -50,31 +50,33 @@ class Plant extends React.Component {
 
 	addEventListeners = async () => {
 
-		this.props.DAIContract.events.allEvents()
-		.on('data', (event) => {
-			this.checkApproval();
-		})
-		.on('error', console.error);
+		if(this.props.isConnected) {
+			this.props.DAIContract.events.allEvents()
+			.on('data', (event) => {
+				this.checkApproval();
+			})
+			.on('error', console.error);
 
-		this.props.USDCContract.events.allEvents()
-		.on('data', (event) => {
-			this.checkApproval();
-		})
-		.on('error', console.error);
+			this.props.USDCContract.events.allEvents()
+			.on('data', (event) => {
+				this.checkApproval();
+			})
+			.on('error', console.error);
 
-		this.props.USDTContract.events.allEvents()
-		.on('data', (event) => {
-			this.checkApproval();
-		})
-		.on('error', console.error);
+			this.props.USDTContract.events.allEvents()
+			.on('data', (event) => {
+				this.checkApproval();
+			})
+			.on('error', console.error);
 
-		
-		this.props.NFTreeContract.events.Transfer()
-		.on('data', (event) => {
-			let numCredits = this.state.totalCost / 10;
-			this.props.insertDB(event.transactionHash, numCredits, this.state.totalCost, this.coins[this.state.coinIndex]);
-		})
-		.on('error', console.error);
+			
+			this.props.NFTreeContract.events.Transfer()
+			.on('data', (event) => {
+				let numCredits = this.state.totalCost / 10;
+				this.props.insertDB(event.transactionHash, numCredits, this.state.totalCost, this.coins[this.state.coinIndex]);
+			})
+			.on('error', console.error);
+		}
 		
 	}
 
