@@ -131,9 +131,11 @@
 .carbonFYI {
 	color: #6d6b6b;
 	position: absolute;
-	bottom: 0;
+	display: block;
+	bottom: 4px;
 	width: 100%;
 	text-align: center;
+	text-decoration: none;
 }
 
 @media only screen and (max-height: 750px) {

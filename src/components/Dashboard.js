@@ -72,7 +72,7 @@ class Dashboard extends React.Component {
   }
 
   displayCarbonFootprint = () => {
-    if(this.state.totalKg - this.state.totalOffset * 1000 <= 0){
+    if(this.state.totalKg - this.state.totalOffset * 1000 < 0){
       return(
         <div className = 'carbonFootprintUnit'><CountUp className = 'carbonFootprintValue' end = {this.state.totalKg - this.state.totalOffset * 1000} duration = {1} separator ={','} style = {{color: '#74CA86'}}/> kg CO<sub>2</sub></div>
       )
@@ -154,8 +154,8 @@ class Dashboard extends React.Component {
                 verify the carbon offsets from our <a className = 'dashboardLink' href="https://offsetra.com/profile/NFTrees" target='_blank' rel='noreferrer'>Portfolio</a>.
               </div>
             </div>
-            <div className = "dashboardSpacer"/> 
-            <div className = "carbonFYI">Calculated with Carbon.fyi</div>
+            <div className = "dashboardSpacer"/>
+            <a className="carbonFYI" href="https://github.com/Offsetra/ethereum-emissions-calculator" target = "_blank">Calculated with Carbon.fyi</a>
           </div>
         </div>
       );

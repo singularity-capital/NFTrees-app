@@ -38,7 +38,7 @@ class Plant extends React.Component {
 		this.options = [
 			{ value: 'DAI', label: <div className = 'currencyOption'><div className = 'currencyLogo'><img src={dai} height="20px" width="20px" alt = {'Could not load'}/></div><p className = 'currencyText'>DAI</p></div> },
 			{ value: 'USDC', label: <div className = 'currencyOption'><div className = 'currencyLogo'><img src={usdc} height="20px" width="20px" alt = {'Could not load'}/></div><p className = 'currencyText'>USDC</p></div> },
-			// { value: 'USDT', label: <div className = 'currencyOption'><div className = 'currencyLogo'><img src={usdt} height="20px" width="20px" alt = {'Could not load'}/></div><p className = 'currencyText'>USDT</p></div> },
+			// { value: 'USDT', label: <div className = 'currencyOption'><div className = 'currencyLogo'><img src={usdt} height="20px" width="20px" alt = {'Could not load'}/></div><p className = 'currencyText'>USDT</p></div> }
 		];
 		this.defaultOption = this.options[0];
 	}
